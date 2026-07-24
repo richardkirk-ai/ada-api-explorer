@@ -140,6 +140,39 @@
 
   footer{color:var(--faint);font-size:11.5px;text-align:center;padding:30px 0 24px}
   @media(max-width:900px){.cards,.contrast{grid-template-columns:1fr}.stage{grid-template-columns:1fr;gap:12px}.wire{flex-direction:row;min-height:60px}.wire .line{display:none}}
+
+  /* ===== Design Options ===== */
+  .do-intro{max-width:780px;margin:2px auto 30px;text-align:center}
+  .do-intro h2{font-size:27px;font-weight:800;letter-spacing:-.02em}
+  .do-intro h2 span{color:var(--ada2)}
+  .do-intro p{color:var(--muted);font-size:14.5px;margin-top:11px;line-height:1.6}
+  .do-intro .note{margin-top:16px;font-family:'JetBrains Mono',monospace;font-size:11px;color:var(--body);background:var(--panel);border:1px solid var(--stroke);border-radius:999px;padding:8px 15px;display:inline-block}
+  .do-intro .note b{color:var(--ada2)}
+  .do-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:32px 18px}
+  @media(max-width:1080px){.do-grid{grid-template-columns:repeat(2,1fr)}}
+  @media(max-width:640px){.do-grid{grid-template-columns:1fr}}
+  .do-slot{display:flex;flex-direction:column;align-items:center;margin:0}
+  .do-phone{width:250px;height:520px;border-radius:34px;background:#05060a;padding:8px;position:relative;box-shadow:0 26px 60px rgba(0,0,0,.55),0 0 0 1px var(--stroke2);flex:0 0 auto}
+  .do-screen{position:absolute;inset:8px;border-radius:27px;overflow:hidden;background:#0d0f16}
+  .do-notch{position:absolute;top:8px;left:50%;transform:translateX(-50%);width:76px;height:17px;background:#05060a;border-radius:0 0 11px 11px;z-index:40}
+  .do-stat{position:absolute;top:0;left:0;right:0;height:28px;display:flex;align-items:center;justify-content:space-between;padding:0 16px;font-size:10px;font-weight:700;color:#e8eaf0;z-index:30}
+  .do-bg{position:absolute;inset:0;padding:34px 13px 13px}
+  .do-glass{-webkit-backdrop-filter:blur(14px);backdrop-filter:blur(14px);background:rgba(16,18,26,.6);border:1px solid rgba(255,255,255,.14);border-radius:16px;box-shadow:0 14px 40px rgba(0,0,0,.45)}
+  .do-ava{width:26px;height:26px;border-radius:50%;background:linear-gradient(135deg,var(--ada),var(--ada2));display:flex;align-items:center;justify-content:center;flex:0 0 auto;color:#fff;font-size:12px;font-weight:800}
+  .do-a{font-size:11.5px;line-height:1.45;color:#eef0f6}
+  .do-a b{color:#fff}
+  .do-lbl{font-family:'JetBrains Mono',monospace;font-size:8.5px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--ada2);display:flex;align-items:center;gap:6px;margin-bottom:9px}
+  .do-lbl::before{content:"";width:5px;height:5px;border-radius:50%;background:var(--ada);box-shadow:0 0 8px var(--ada)}
+  .do-rich{background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.16);border-radius:11px;padding:10px;margin-top:9px}
+  .do-chips{display:flex;flex-wrap:wrap;gap:6px;margin-top:9px}
+  .do-chip{font-size:10.5px;font-weight:600;color:#fff;background:rgba(255,255,255,.1);border:1px solid rgba(255,255,255,.22);border-radius:999px;padding:5px 11px}
+  .do-chip.solid{background:var(--acc);border-color:transparent;color:#fff}
+  .do-bub-u{align-self:flex-end;background:var(--conv);color:#052b31;font-size:11px;font-weight:600;padding:7px 11px;border-radius:12px 12px 4px 12px;max-width:82%}
+  .do-cap{margin-top:16px;text-align:center;max-width:252px}
+  .do-cap .tg{font-family:'JetBrains Mono',monospace;font-size:9px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--cap,var(--ada2));margin-bottom:7px}
+  .do-cap .h{font-size:15px;font-weight:700;line-height:1.25;margin-bottom:6px}
+  .do-cap .d{font-size:12px;color:var(--muted);line-height:1.5}
+  .do-cap .api{display:inline-block;margin-top:10px;font-family:'JetBrains Mono',monospace;font-size:9.5px;color:var(--body);background:var(--panel);border:1px solid var(--stroke);border-radius:6px;padding:4px 9px}
 </style>
 </head>
 <body>
@@ -161,6 +194,7 @@
   <div class="toggle">
     <button id="tabRef" class="on" onclick="show('ref')">Reference</button>
     <button id="tabScn" onclick="show('scn')">See it in action</button>
+    <button id="tabDes" onclick="show('des')">Design Options</button>
   </div>
 
   <!-- ================= REFERENCE ================= -->
@@ -255,6 +289,200 @@
     </div>
   </div>
 
+  <!-- ================= DESIGN OPTIONS ================= -->
+  <div class="view" id="viewDes">
+    <div class="do-intro">
+      <h2>Design the chat, not just the <span>answers</span></h2>
+      <p>The Front-end SDK and Conversations API let you render the AI agent <b style="color:var(--body)">any way you like</b> — a frosted overlay, an inline carousel, a voice orb, a proactive nudge — over whatever your app already shows. Same engine, knowledge and actions behind every surface; the design is entirely yours. Eight illustrative concepts across industries.</p>
+      <div class="note">🎨 8 concepts · <b>fully customisable</b> front end · powered by embed2.js + Conversations API</div>
+    </div>
+
+    <div class="do-grid">
+
+      <!-- 1 · Banking — glass concierge -->
+      <figure class="do-slot" style="--ada:#10b981;--ada2:#5eead4;--acc:#10b981;--cap:#5eead4">
+        <div class="do-phone"><div class="do-screen"><div class="do-notch"></div>
+          <div class="do-stat"><span>9:41</span><span>5G ▮▮ 82%</span></div>
+          <div class="do-bg" style="background:radial-gradient(120% 55% at 50% 0,#0f3a2e,#0b0d14 62%)">
+            <div style="font-family:'JetBrains Mono',monospace;font-size:9px;color:#5fd6a6;letter-spacing:.1em;font-weight:700">MONETA · CURRENT ACCOUNT</div>
+            <div style="font-size:27px;font-weight:800;margin-top:7px;color:#fff">£4,820.55</div>
+            <div style="height:60px;border-radius:12px;margin-top:12px;background:linear-gradient(120deg,#0e8f6b,#0a4a55);position:relative;box-shadow:0 10px 22px rgba(0,0,0,.45)">
+              <div style="position:absolute;top:9px;right:11px;font-size:8.5px;color:#cffbe9;font-weight:700;letter-spacing:.08em">MONETA</div>
+              <div style="position:absolute;bottom:9px;left:12px;font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:.18em;color:#eafff6">•••• 4821</div>
+            </div>
+            <div style="margin-top:13px;display:flex;flex-direction:column;gap:10px">
+              <div style="display:flex;justify-content:space-between;font-size:11px;color:#aeb4c2"><span>⚡ EnergyCo · DD</span><span style="color:#ff8f8f;font-weight:700">−£128</span></div>
+              <div style="display:flex;justify-content:space-between;font-size:11px;color:#aeb4c2"><span>☕ Grind Coffee</span><span>−£4.20</span></div>
+              <div style="display:flex;justify-content:space-between;font-size:11px;color:#aeb4c2"><span>↩ Salary</span><span style="color:#5fd6a6;font-weight:700">+£3,110</span></div>
+            </div>
+          </div>
+          <div class="do-glass" style="position:absolute;left:11px;right:11px;bottom:13px;padding:12px">
+            <div class="do-lbl">Proactive · in-app</div>
+            <div style="display:flex;gap:9px"><div class="do-ava">✦</div><div class="do-a">Your <b>EnergyCo</b> direct debit is <b>£42 higher</b> than usual this month. Want a breakdown, or shall I set a spend alert?</div></div>
+            <div class="do-chips"><span class="do-chip solid">See breakdown</span><span class="do-chip">Set alert</span></div>
+          </div>
+        </div></div>
+        <figcaption class="do-cap"><div class="tg">Banking · Glass overlay</div><div class="h">A concierge that floats over the app</div><div class="d">A frosted, semi-transparent panel sits above the live account screen — on-brand and unmistakably yours, not a generic corner bubble. It opens itself when Ada spots an unusual charge.</div><div class="api">embed2.js · custom launcher + triggerProactive()</div></figcaption>
+      </figure>
+
+      <!-- 2 · Telecoms — proactive data booster -->
+      <figure class="do-slot" style="--ada:#4f6ef7;--ada2:#a5b4fc;--acc:#4f6ef7;--cap:#a5b4fc">
+        <div class="do-phone"><div class="do-screen"><div class="do-notch"></div>
+          <div class="do-stat"><span>9:41</span><span>5G ▮▮ 74%</span></div>
+          <div class="do-bg" style="background:radial-gradient(120% 55% at 50% 0,#141a3a,#0b0d14 62%)">
+            <div style="font-family:'JetBrains Mono',monospace;font-size:9px;color:#8fb0ff;letter-spacing:.1em;font-weight:700">PULSE MOBILE · DATA</div>
+            <div style="margin:20px auto 0;width:128px;height:128px;border-radius:50%;background:conic-gradient(#5b8bff 0 90%,rgba(255,255,255,.08) 90% 100%);display:flex;align-items:center;justify-content:center">
+              <div style="width:102px;height:102px;border-radius:50%;background:#0b0d14;display:flex;flex-direction:column;align-items:center;justify-content:center">
+                <div style="font-size:23px;font-weight:800;color:#fff">90%</div>
+                <div style="font-size:8.5px;color:#8a90a0">used</div>
+              </div>
+            </div>
+            <div style="text-align:center;margin-top:14px;font-size:11px;color:#aeb4c2">1.2&nbsp;GB of 12&nbsp;GB left · <span style="color:#ff9a9a">6 days</span></div>
+          </div>
+          <div class="do-glass" style="position:absolute;left:11px;right:11px;top:36px;padding:11px">
+            <div class="do-lbl">Proactive nudge</div>
+            <div style="display:flex;gap:9px"><div class="do-ava">✦</div><div class="do-a">At this rate you'll run out before your renewal. Top up in one tap?</div></div>
+            <div class="do-rich"><div style="display:flex;justify-content:space-between;align-items:center"><div><div style="font-size:12px;font-weight:700;color:#fff">+5&nbsp;GB Booster</div><div style="font-size:9.5px;color:#9aa0b0">Instant · valid to renewal</div></div><div style="font-size:16px;font-weight:800;color:#a5b4fc">£5</div></div><div style="margin-top:9px;background:#4f6ef7;color:#fff;text-align:center;font-size:11px;font-weight:700;padding:8px;border-radius:8px">Add booster</div></div>
+          </div>
+        </div></div>
+        <figcaption class="do-cap"><div class="tg">Telecoms · Proactive</div><div class="h">A nudge that arrives at the right moment</div><div class="d">Triggered by a real signal — usage nearing the cap — the agent surfaces a one-tap upsell as a rich card, turning a support surface into a revenue moment.</div><div class="api">triggerProactive() · rich action card</div></figcaption>
+      </figure>
+
+      <!-- 3 · Gaming — neon companion drawer -->
+      <figure class="do-slot" style="--ada:#e030c0;--ada2:#ff7be0;--acc:#e030c0;--cap:#ff9beb">
+        <div class="do-phone"><div class="do-screen"><div class="do-notch"></div>
+          <div class="do-stat"><span>9:41</span><span>◈ 60fps</span></div>
+          <div class="do-bg" style="background:radial-gradient(100% 65% at 50% 0,#2a0b3a,#08060f 66%)">
+            <div style="display:flex;justify-content:space-between;align-items:center"><div style="font-family:'JetBrains Mono',monospace;font-size:10px;color:#f472ff;font-weight:700">48,210</div><div style="font-size:10px;color:#ffd36b">★ 2,140</div></div>
+            <div style="margin-top:6px;height:6px;border-radius:4px;background:rgba(255,255,255,.12);overflow:hidden"><div style="width:64%;height:100%;background:linear-gradient(90deg,#ff4d6d,#ffb703)"></div></div>
+            <div style="margin-top:64px;text-align:center;font-family:'JetBrains Mono',monospace;font-size:32px;font-weight:800;color:#f472ff;text-shadow:0 0 18px #e030c0">LVL 42</div>
+            <div style="text-align:center;font-size:10px;color:#c9a7e6;letter-spacing:.15em">THE VOID BOSS</div>
+            <div style="position:absolute;left:16px;bottom:16px;width:50px;height:50px;border-radius:50%;border:2px solid rgba(244,114,255,.3);background:rgba(255,255,255,.04)"></div>
+            <div style="position:absolute;right:18px;bottom:20px;width:40px;height:40px;border-radius:50%;background:radial-gradient(circle at 40% 35%,#f472ff,#7a1866);box-shadow:0 0 16px rgba(224,48,192,.5)"></div>
+          </div>
+          <div style="position:absolute;top:66px;right:10px;bottom:66px;width:148px;border-radius:16px;background:linear-gradient(180deg,rgba(52,10,64,.72),rgba(20,6,30,.72));-webkit-backdrop-filter:blur(12px);backdrop-filter:blur(12px);border:1px solid rgba(244,114,255,.42);box-shadow:0 0 30px rgba(224,48,192,.35);padding:11px">
+            <div class="do-lbl">Game companion</div>
+            <div style="display:flex;gap:8px"><div class="do-ava">✦</div><div class="do-a">3 tries on <b>The Void</b> — want a strategy?</div></div>
+            <div class="do-rich" style="border-color:rgba(244,114,255,.3)"><div style="font-size:10.5px;color:#f7d6ff;line-height:1.42">Bait its dash, roll left, then hit the core when it glows. 💥</div></div>
+            <div class="do-chips"><span class="do-chip solid">Claim 50 💎</span></div>
+          </div>
+        </div></div>
+        <figcaption class="do-cap"><div class="tg">Gaming · Immersive</div><div class="h">An in-world companion, not a help desk</div><div class="d">A neon side-drawer matched to the game's art, offering hints and rewards to keep players engaged — the agent as retention mechanic, styled like part of the game.</div><div class="api">custom UI · setMetaFields() game state</div></figcaption>
+      </figure>
+
+      <!-- 4 · Retail — inline product carousel -->
+      <figure class="do-slot" style="--ada:#ec4899;--ada2:#ff9fce;--acc:#ec4899;--cap:#ff9fce">
+        <div class="do-phone"><div class="do-screen"><div class="do-notch"></div>
+          <div class="do-stat"><span>9:41</span><span>5G ▮▮ 91%</span></div>
+          <div class="do-bg" style="background:#0d0f16;padding:34px 0 0">
+            <div style="padding:0 14px;display:flex;justify-content:space-between;align-items:center"><div style="font-family:Georgia,serif;font-size:16px;font-weight:800;color:#fff;letter-spacing:.1em">SOLE</div><div style="font-size:13px;color:#9aa0b0">⌕&nbsp;&nbsp;🛍</div></div>
+            <div style="margin-top:14px;padding:0 14px;display:flex;flex-direction:column;gap:9px">
+              <div class="do-bub-u">Show me trainers under £80</div>
+              <div style="display:flex;gap:8px"><div class="do-ava">✦</div><div class="do-a" style="color:#c9cede">Three great picks under £80 👟</div></div>
+            </div>
+            <div style="margin-top:12px;padding-left:14px;display:flex;gap:9px;overflow:hidden">
+              <div style="flex:0 0 96px;background:#161922;border:1px solid #262b38;border-radius:12px;padding:8px"><div style="height:66px;border-radius:8px;background:linear-gradient(135deg,#ec4899,#7c5cff)"></div><div style="font-size:10px;color:#e8eaf0;margin-top:6px;font-weight:600">Aero Run</div><div style="font-size:11px;color:#ff9fce;font-weight:800">£72</div></div>
+              <div style="flex:0 0 96px;background:#161922;border:1px solid #262b38;border-radius:12px;padding:8px"><div style="height:66px;border-radius:8px;background:linear-gradient(135deg,#22d3ee,#0e7490)"></div><div style="font-size:10px;color:#e8eaf0;margin-top:6px;font-weight:600">Glide Knit</div><div style="font-size:11px;color:#ff9fce;font-weight:800">£65</div></div>
+              <div style="flex:0 0 96px;background:#161922;border:1px solid #262b38;border-radius:12px;padding:8px"><div style="height:66px;border-radius:8px;background:linear-gradient(135deg,#f59e0b,#b45309)"></div><div style="font-size:10px;color:#e8eaf0;margin-top:6px;font-weight:600">Track 90</div><div style="font-size:11px;color:#ff9fce;font-weight:800">£78</div></div>
+            </div>
+            <div style="margin-top:12px;padding:0 14px;display:flex;gap:8px"><div class="do-ava" style="opacity:0">✦</div><div style="flex:1;background:rgba(255,255,255,.06);border:1px solid #262b38;border-radius:999px;padding:8px 13px;font-size:11px;color:#7b8296">Message SOLE…</div></div>
+          </div>
+        </div></div>
+        <figcaption class="do-cap"><div class="tg">Retail · Inline</div><div class="h">Chat woven into the feed</div><div class="d">No floating window at all — the conversation lives inline, and product results come back as a swipeable card carousel. Shoppers switch between typing and tapping freely.</div><div class="api">Conversations API · custom cards &amp; carousel</div></figcaption>
+      </figure>
+
+      <!-- 5 · Travel — live boarding pass -->
+      <figure class="do-slot" style="--ada:#0ea5c4;--ada2:#67e8f9;--acc:#0ea5c4;--cap:#7fe9fb">
+        <div class="do-phone"><div class="do-screen"><div class="do-notch"></div>
+          <div class="do-stat"><span>9:41</span><span>✈ 5G</span></div>
+          <div class="do-bg" style="background:radial-gradient(120% 55% at 50% 0,#062b3a,#0b0d14 62%)">
+            <div style="font-family:'JetBrains Mono',monospace;font-size:9px;color:#67e8f9;letter-spacing:.1em;font-weight:700">SKYLINE AIR · YOUR TRIP</div>
+            <div style="margin-top:14px;display:flex;justify-content:space-between;align-items:flex-end">
+              <div><div style="font-size:22px;font-weight:800;color:#fff">LHR</div><div style="font-size:9px;color:#8a90a0">11:55</div></div>
+              <div style="flex:1;text-align:center;color:#67e8f9;font-size:14px">· · ✈ · ·</div>
+              <div style="text-align:right"><div style="font-size:22px;font-weight:800;color:#fff">JFK</div><div style="font-size:9px;color:#8a90a0">15:10</div></div>
+            </div>
+            <div style="margin-top:16px;height:96px;border-radius:12px;background:linear-gradient(180deg,rgba(103,232,249,.1),transparent),repeating-linear-gradient(90deg,rgba(255,255,255,.05) 0 1px,transparent 1px 26px),repeating-linear-gradient(rgba(255,255,255,.05) 0 1px,transparent 1px 26px),#0e1a24;position:relative;overflow:hidden"><div style="position:absolute;left:14px;top:60px;color:#67e8f9">◉</div><div style="position:absolute;right:22px;top:20px;color:#fff">✈</div></div>
+          </div>
+          <div class="do-glass" style="position:absolute;left:11px;right:11px;bottom:13px;padding:12px">
+            <div class="do-lbl">Proactive · disruption</div>
+            <div style="display:flex;gap:9px"><div class="do-ava">✦</div><div class="do-a"><b>Gate changed to B12.</b> It's a 7-min walk — you've plenty of time. Here's your pass:</div></div>
+            <div class="do-rich"><div style="display:flex;justify-content:space-between"><div><div style="font-size:8.5px;color:#9aa0b0">PASSENGER</div><div style="font-size:11px;color:#fff;font-weight:700">R. KIRK</div></div><div><div style="font-size:8.5px;color:#9aa0b0">SEAT</div><div style="font-size:11px;color:#fff;font-weight:700">14C</div></div><div><div style="font-size:8.5px;color:#9aa0b0">GATE</div><div style="font-size:11px;color:#67e8f9;font-weight:800">B12</div></div></div><div style="margin-top:9px;font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:.22em;color:#c9cede">▮▏▮▮▏▮▏▏▮▮▏▮▏▮▮▏▮▏▮</div></div>
+          </div>
+        </div></div>
+        <figcaption class="do-cap"><div class="tg">Travel · Live card</div><div class="h">The answer is a boarding pass</div><div class="d">When plans change, the agent pushes a live, richly formatted component — a re-issued boarding pass — not a paragraph of text. Custom blocks render exactly on-brand.</div><div class="api">triggerProactive() · custom rich component</div></figcaption>
+      </figure>
+
+      <!-- 6 · Health — voice-first orb -->
+      <figure class="do-slot" style="--ada:#8b5cf6;--ada2:#c4b5fd;--acc:#8b5cf6;--cap:#c4b5fd">
+        <div class="do-phone"><div class="do-screen"><div class="do-notch"></div>
+          <div class="do-stat"><span>9:41</span><span>5G ▮▮ 88%</span></div>
+          <div class="do-bg" style="background:radial-gradient(120% 70% at 50% 22%,#241a4d,#0b0d14 66%);display:flex;flex-direction:column">
+            <div style="font-family:'JetBrains Mono',monospace;font-size:9px;color:#c4b5fd;letter-spacing:.1em;font-weight:700">VITAL · ASSISTANT</div>
+            <div style="flex:1;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:15px">
+              <div style="width:94px;height:94px;border-radius:50%;background:radial-gradient(circle at 40% 35%,#c4b5fd,#8b5cf6 58%,#5b21b6);box-shadow:0 0 42px rgba(139,92,246,.6),inset 0 0 20px rgba(255,255,255,.3)"></div>
+              <div style="display:flex;gap:4px;align-items:center;height:22px">
+                <i style="width:4px;height:9px;background:#c4b5fd;border-radius:2px;display:block"></i><i style="width:4px;height:17px;background:#c4b5fd;border-radius:2px;display:block"></i><i style="width:4px;height:22px;background:#c4b5fd;border-radius:2px;display:block"></i><i style="width:4px;height:13px;background:#c4b5fd;border-radius:2px;display:block"></i><i style="width:4px;height:19px;background:#c4b5fd;border-radius:2px;display:block"></i><i style="width:4px;height:9px;background:#c4b5fd;border-radius:2px;display:block"></i><i style="width:4px;height:15px;background:#c4b5fd;border-radius:2px;display:block"></i>
+              </div>
+              <div style="text-align:center;font-size:15px;color:#efeaff;font-weight:600;max-width:186px;line-height:1.35">"Reorder my blood-pressure prescription"</div>
+              <div style="font-size:10px;color:#b7a9e6">Ada is listening…</div>
+            </div>
+            <div style="display:flex;gap:9px"><div style="flex:1;text-align:center;background:#8b5cf6;color:#fff;font-weight:700;font-size:13px;padding:13px;border-radius:12px">Yes, reorder</div><div style="flex:1;text-align:center;background:rgba(255,255,255,.09);border:1px solid rgba(255,255,255,.2);color:#fff;font-size:13px;padding:13px;border-radius:12px">Not now</div></div>
+          </div>
+        </div></div>
+        <figcaption class="do-cap"><div class="tg">Health · Voice-first</div><div class="h">A spoken interface, large and clear</div><div class="d">The same agent, fronted by a voice orb, live captions and oversized buttons — an accessible design for users who'd rather speak than type, or need larger touch targets.</div><div class="api">voice channel · custom voice UI + a11y</div></figcaption>
+      </figure>
+
+      <!-- 7 · Food delivery — live tracking -->
+      <figure class="do-slot" style="--ada:#f97316;--ada2:#fdba74;--acc:#f97316;--cap:#fdba74">
+        <div class="do-phone"><div class="do-screen"><div class="do-notch"></div>
+          <div class="do-stat"><span>9:41</span><span>5G ▮▮ 67%</span></div>
+          <div class="do-bg" style="background:#0e1626;padding:34px 0 0">
+            <div style="position:absolute;inset:28px 0 0;background:linear-gradient(90deg,rgba(255,255,255,.045) 1px,transparent 1px) 0 0/30px 30px,linear-gradient(rgba(255,255,255,.045) 1px,transparent 1px) 0 0/30px 30px,#0e1626"></div>
+            <svg viewBox="0 0 234 300" style="position:absolute;inset:28px 0 0;width:100%;height:auto"><path d="M34 44 C120 70 70 180 194 236" stroke="#f97316" stroke-width="3" fill="none" stroke-dasharray="7 7" stroke-linecap="round"/><circle cx="34" cy="44" r="6" fill="#fdba74"/><circle cx="194" cy="236" r="7" fill="#f97316"/><text x="150" y="150" font-size="20">🛵</text></svg>
+          </div>
+          <div class="do-glass" style="position:absolute;left:11px;right:11px;bottom:13px;padding:12px">
+            <div style="display:flex;gap:9px"><div class="do-ava">✦</div><div class="do-a"><b>Marco is 4 mins away 🛵</b> Your Margherita &amp; tiramisu are riding along.</div></div>
+            <div class="do-rich"><div style="display:flex;align-items:center;gap:5px;font-size:9px;color:#c9cede"><span style="color:#fdba74;font-weight:700">✓ Prep</span><span style="flex:1;height:2px;background:#f97316"></span><span style="color:#fdba74;font-weight:700">● En route</span><span style="flex:1;height:2px;background:rgba(255,255,255,.15)"></span><span style="color:#7b8296">Delivered</span></div></div>
+            <div class="do-chips"><span class="do-chip">Message Marco</span><span class="do-chip solid">Reorder</span></div>
+          </div>
+        </div></div>
+        <figcaption class="do-cap"><div class="tg">Food delivery · Live status</div><div class="h">A conversation that updates itself</div><div class="d">The agent streams live order state into a card over the tracking map — status, ETA and quick actions — so "where's my food?" is answered before it's asked.</div><div class="api">Conversations API · streamed status updates</div></figcaption>
+      </figure>
+
+      <!-- 8 · Streaming — multilingual concierge -->
+      <figure class="do-slot" style="--ada:#ef4444;--ada2:#fca5a5;--acc:#ef4444;--cap:#fca5a5">
+        <div class="do-phone"><div class="do-screen"><div class="do-notch"></div>
+          <div class="do-stat"><span>9:41</span><span>5G ▮▮ 79%</span></div>
+          <div class="do-bg" style="background:#07070c;padding:34px 12px 0">
+            <div style="font-family:'JetBrains Mono',monospace;font-size:10px;color:#ef4444;letter-spacing:.14em;font-weight:800">STREAMFLIX</div>
+            <div style="margin-top:12px;display:grid;grid-template-columns:repeat(3,1fr);gap:7px">
+              <div style="height:60px;border-radius:7px;background:linear-gradient(135deg,#ef4444,#7c1d1d)"></div><div style="height:60px;border-radius:7px;background:linear-gradient(135deg,#7c5cff,#312e81)"></div><div style="height:60px;border-radius:7px;background:linear-gradient(135deg,#0ea5c4,#164e63)"></div>
+              <div style="height:60px;border-radius:7px;background:linear-gradient(135deg,#f59e0b,#7c2d12)"></div><div style="height:60px;border-radius:7px;background:linear-gradient(135deg,#10b981,#064e3b)"></div><div style="height:60px;border-radius:7px;background:linear-gradient(135deg,#ec4899,#831843)"></div>
+            </div>
+          </div>
+          <div style="position:absolute;left:0;right:0;bottom:0;padding:22px 11px 13px;background:linear-gradient(180deg,transparent,rgba(7,7,12,.55) 34%,#07070c 76%)">
+            <div class="do-glass" style="padding:12px">
+              <div class="do-lbl">Personalised · multilingual 🌐</div>
+              <div style="display:flex;gap:9px"><div class="do-ava">✦</div><div class="do-a">Parce que vous avez aimé <b>Dune</b>, voici 3 titres pour ce soir :</div></div>
+              <div style="margin-top:10px;display:flex;gap:7px">
+                <div style="flex:1"><div style="height:50px;border-radius:7px;background:linear-gradient(135deg,#ef4444,#7c5cff)"></div><div style="font-size:9px;color:#e8eaf0;margin-top:4px">Arrival</div></div>
+                <div style="flex:1"><div style="height:50px;border-radius:7px;background:linear-gradient(135deg,#0ea5c4,#312e81)"></div><div style="font-size:9px;color:#e8eaf0;margin-top:4px">Blade&nbsp;2049</div></div>
+                <div style="flex:1"><div style="height:50px;border-radius:7px;background:linear-gradient(135deg,#f59e0b,#831843)"></div><div style="font-size:9px;color:#e8eaf0;margin-top:4px">Interstellar</div></div>
+              </div>
+            </div>
+          </div>
+        </div></div>
+        <figcaption class="do-cap"><div class="tg">Streaming · Multilingual</div><div class="h">A concierge in every language</div><div class="d">A cinematic recommendation panel that detects the viewer's language and replies in it — poster picks drawn from watch history, one engine serving every market.</div><div class="api">any channel · auto language + rich media</div></figcaption>
+      </figure>
+
+    </div>
+
+    <div class="also" style="margin-top:30px">
+      <b>The through-line:</b> every surface above runs on the <span class="mono">same</span> AI agent — one set of knowledge, playbooks and actions. The Front-end SDK renders and controls chat client-side (custom launcher, proactive triggers, events); the <span class="mono">Conversations API</span> lets you build the UI entirely yourself and receive replies by webhook. The design is a front-end choice, not a rebuild.
+    </div>
+  </div>
+
   <footer>Ada API Explorer · illustrative reference &amp; walkthrough · method inventory from docs.ada.cx</footer>
 </div>
 
@@ -321,8 +549,10 @@ function esc(s){return (s||'').replace(/&/g,'&amp;').replace(/</g,'&lt;').replac
 function show(v){
   document.getElementById('viewRef').classList.toggle('on',v==='ref');
   document.getElementById('viewScn').classList.toggle('on',v==='scn');
+  document.getElementById('viewDes').classList.toggle('on',v==='des');
   document.getElementById('tabRef').classList.toggle('on',v==='ref');
   document.getElementById('tabScn').classList.toggle('on',v==='scn');
+  document.getElementById('tabDes').classList.toggle('on',v==='des');
 }
 
 /* ---------- scenario player ---------- */
