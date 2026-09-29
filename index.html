@@ -215,6 +215,10 @@
   .routerow.on{opacity:1}
   .routerow .rlbl{font-family:'JetBrains Mono',monospace;font-size:8.5px;letter-spacing:.08em;text-transform:uppercase;color:var(--muted);margin-right:6px}
   .routerow b{color:var(--wh)}
+  .deliver{font-size:10.5px;font-weight:600;border-radius:8px;padding:6px 10px;opacity:0;transition:.4s;line-height:1.4}
+  .deliver.on{opacity:1}
+  .deliver.ok{background:rgba(46,204,113,.1);border:1px solid rgba(46,204,113,.35);color:#7ee2a8}
+  .deliver.warn{background:rgba(245,166,35,.1);border:1px solid rgba(245,166,35,.4);color:#f7c76b}
   .spk{font-family:'JetBrains Mono',monospace;font-size:8px;font-weight:700;letter-spacing:.09em;text-transform:uppercase;margin-bottom:3px;display:block}
   .spk.r{text-align:right}
   .spk.cust{color:#22d3ee} .spk.ai{color:var(--ada2)} .spk.hum{color:var(--wh)}
@@ -327,7 +331,7 @@
         </div>
         <div class="hoff-col voice">
           <h4><span class="ic">📞</span> Voice</h4>
-          <div class="sub">Warm-transfer a live call to your contact centre. <span class="mono" style="color:var(--body)">SIP</span> = 2-way SIP (carries context) · <span class="mono" style="color:var(--body)">PSTN</span> = telephony transfer · <span class="mono" style="color:var(--body)">ctx</span> = context transfer.</div>
+          <div class="sub">Warm-transfer a live call to your contact centre. <span class="mono" style="color:var(--body)">SIP</span> = 2-way SIP · <span class="mono" style="color:var(--body)">PSTN</span> = telephony transfer · <span class="mono" style="color:var(--body)">ctx</span> = context carried · <span class="mono" style="color:var(--body)">ctx·setup</span> = context via one-time setup.</div>
           <div class="lgwall" id="voiceWall"></div>
         </div>
       </div>
@@ -489,9 +493,10 @@
                 <div class="row"><span>Verified</span><b>Yes · via account</b></div>
               </div>
               <div class="routerow" id="hRoute"><span class="rlbl">Routed to</span> <b>Billing queue → Maria G.</b></div>
+              <div class="deliver" id="hDeliver"></div>
               <div class="agtrow" id="hAgt"><span class="av">M</span> <span><b style="color:var(--ink)">Maria G.</b> · Tier-2 Billing · picked up in 0:12</span></div>
               <div class="transcript" id="hTrans">
-                <b>Synced transcript</b><br>
+                <b id="hTransHdr">Synced transcript</b><br>
                 <span class="tc cust">Customer:</span> I've been charged twice…<br>
                 <span class="tc ai">AI agent:</span> I can see two £129 charges on 24 Sep against order #10432.<br>
                 <span class="tc cust">Customer:</span> I need a person.<br>
@@ -839,7 +844,9 @@ DATA.forEach(function(api,ai){
 /* ---------- handoff matrix ---------- */
 function iconUrl(slug){return 'https://cdn.simpleicons.org/'+slug+'/c9cede';}
 function chipHtml(o,voice){
-  var tags = voice ? ('<span class="tag">'+o.t+'</span>'+(o.c?'<span class="tag">ctx</span>':'')) : '';
+  var tags='';
+  if(voice){tags='<span class="tag">'+o.t+'</span>'+(o.ct==='full'?'<span class="tag">ctx</span>':(o.ct==='setup'?'<span class="tag">ctx·setup</span>':''));}
+  else if(o.tag2){tags='<span class="tag">'+o.tag2+'</span>';}
   return '<span class="lg">'+
     '<img src="'+iconUrl(o.slug)+'" alt="" loading="lazy" onerror="this.style.display=\'none\';this.nextElementSibling.style.display=\'flex\'">'+
     '<span class="mg">'+o.mg+'</span>'+
@@ -858,26 +865,26 @@ var CHAT_HOFF=[
   {n:'Help Scout',slug:'helpscout',mg:'HS',r:'ga'},
   {n:'Twilio Flex',slug:'twilio',mg:'Tw',r:'ga'},
   {n:'NICE CXone',slug:'nice',mg:'Ni',r:'ga'},
-  {n:'ServiceNow',slug:'servicenow',mg:'SN',r:'ga'},
-  {n:'MS Dynamics',slug:'dynamics365',mg:'Dy',r:'ga'},
+  {n:'ServiceNow',slug:'servicenow',mg:'SN',r:'ga',tag2:'ticketing'},
+  {n:'MS Dynamics',slug:'dynamics365',mg:'Dy',r:'ga',tag2:'ticketing'},
   {n:'Khoros',slug:'khoros',mg:'Kh',r:'lim'},
   {n:'Gorgias',slug:'gorgias',mg:'Go',r:'lim'},
   {n:'Intercom',slug:'intercom',mg:'Ic',r:'rm'},
   {n:'Oracle',slug:'oracle',mg:'Or',r:'rm'}
 ];
 var VOICE_HOFF=[
-  {n:'Amazon Connect',slug:'amazonwebservices',mg:'AC',r:'ga',t:'SIP',c:true},
-  {n:'Genesys Cloud',slug:'genesys',mg:'Ge',r:'ga',t:'SIP',c:true},
-  {n:'Zendesk Talk',slug:'zendesk',mg:'ZD',r:'ga',t:'PSTN',c:true},
-  {n:'Aircall',slug:'aircall',mg:'Ai',r:'ga',t:'SIP',c:true},
-  {n:'Salesforce',slug:'salesforce',mg:'SF',r:'ga',t:'SIP',c:true},
-  {n:'Dixa',slug:'dixa',mg:'Dx',r:'ga',t:'PSTN',c:false},
-  {n:'Twilio Flex',slug:'twilio',mg:'Tw',r:'ga',t:'SIP',c:false},
-  {n:'Gladly',slug:'gladly',mg:'Gl',r:'ga',t:'PSTN',c:false},
-  {n:'Cisco CUBE',slug:'cisco',mg:'Ci',r:'ga',t:'SIP',c:false},
-  {n:'Five9',slug:'five9',mg:'F9',r:'ga',t:'SIP',c:false},
-  {n:'NICE CXone',slug:'nice',mg:'Ni',r:'ga',t:'SIP',c:false},
-  {n:'Vonage',slug:'vonage',mg:'Vo',r:'ga',t:'SIP',c:false}
+  {n:'Amazon Connect',slug:'amazonwebservices',mg:'AC',r:'ga',t:'SIP',ct:'full'},
+  {n:'Genesys Cloud',slug:'genesys',mg:'Ge',r:'ga',t:'SIP',ct:'full'},
+  {n:'Zendesk Talk',slug:'zendesk',mg:'ZD',r:'ga',t:'PSTN',ct:'full'},
+  {n:'Aircall',slug:'aircall',mg:'Ai',r:'ga',t:'SIP',ct:'full'},
+  {n:'Salesforce',slug:'salesforce',mg:'SF',r:'ga',t:'SIP',ct:'setup'},
+  {n:'Dixa',slug:'dixa',mg:'Dx',r:'ga',t:'PSTN',ct:'none'},
+  {n:'Twilio Flex',slug:'twilio',mg:'Tw',r:'ga',t:'SIP',ct:'none'},
+  {n:'Gladly',slug:'gladly',mg:'Gl',r:'ga',t:'PSTN',ct:'none'},
+  {n:'Cisco CUBE',slug:'cisco',mg:'Ci',r:'ga',t:'SIP',ct:'none'},
+  {n:'Five9',slug:'five9',mg:'F9',r:'ga',t:'SIP',ct:'none'},
+  {n:'NICE CXone',slug:'nice',mg:'Ni',r:'ga',t:'SIP',ct:'none'},
+  {n:'Vonage',slug:'vonage',mg:'Vo',r:'ga',t:'SIP',ct:'none'}
 ];
 document.getElementById('chatWall').innerHTML=CHAT_HOFF.map(function(o){return chipHtml(o,false);}).join('');
 document.getElementById('voiceWall').innerHTML=VOICE_HOFF.map(function(o){return chipHtml(o,true);}).join('');
@@ -935,14 +942,28 @@ function applyConv(cur){
   document.getElementById('typing').classList.toggle('on', !!s.agent && !s.agentDone);
 }
 
-/* ---- Handoff module ---- */
-var DESTS={
-  salesforce:{name:'Salesforce',slug:'salesforce',mg:'SF',chat:'MIAW',voice:'Service Cloud Voice'},
-  genesys:{name:'Genesys Cloud',slug:'genesys',mg:'Ge',chat:'Web messaging',voice:'2-way SIP'},
-  zendesk:{name:'Zendesk',slug:'zendesk',mg:'ZD',chat:'Agent Workspace',voice:'Zendesk Talk'},
-  amazon:{name:'Amazon Connect',slug:'amazonwebservices',mg:'AC',chat:'Connect Chat',voice:'2-way SIP'}
+/* ---- Handoff module ----
+   Destinations are channel-specific and carry their real method + context behaviour,
+   drawn from Ada's AI Agent Integration Readiness (Sep 2026).
+   ct: 'full' = deployed context transfer · 'setup' = context via one-time setup · 'none' = telephony transfer only */
+var HDEST={
+  chat:[
+    {key:'salesforce',name:'Salesforce',slug:'salesforce',mg:'SF',mech:'Messaging · MIAW',rte:'API',type:'messaging',ct:'full'},
+    {key:'zendesk',name:'Zendesk',slug:'zendesk',mg:'ZD',mech:'Agent Workspace',rte:'API',type:'messaging',ct:'full'},
+    {key:'genesys',name:'Genesys',slug:'genesys',mg:'Ge',mech:'Web messaging',rte:'API',type:'messaging',ct:'full'},
+    {key:'dixa',name:'Dixa',slug:'dixa',mg:'Dx',mech:'Messaging',rte:'API',type:'messaging',ct:'full'},
+    {key:'servicenow',name:'ServiceNow',slug:'servicenow',mg:'SN',mech:'Ticketing (async)',rte:'ticket',type:'ticketing',ct:'full'}
+  ],
+  voice:[
+    {key:'amazon',name:'Amazon Connect',slug:'amazonwebservices',mg:'AC',mech:'2-way SIP',rte:'SIP',type:'sip',ct:'full'},
+    {key:'genesys',name:'Genesys Cloud',slug:'genesys',mg:'Ge',mech:'2-way SIP',rte:'SIP',type:'sip',ct:'full'},
+    {key:'zendesk',name:'Zendesk Talk',slug:'zendesk',mg:'ZD',mech:'PSTN transfer',rte:'PSTN',type:'pstn',ct:'full'},
+    {key:'salesforce',name:'Salesforce',slug:'salesforce',mg:'SF',mech:'2-way SIP',rte:'SIP',type:'sip',ct:'setup'},
+    {key:'five9',name:'Five9',slug:'five9',mg:'F9',mech:'2-way SIP',rte:'SIP',type:'sip',ct:'none'}
+  ]
 };
 var hoffChan='chat', hoffDest='salesforce';
+function curDest(){var l=HDEST[hoffChan];for(var i=0;i<l.length;i++){if(l[i].key===hoffDest)return l[i];}return l[0];}
 var HOFF_STEPS=[
   {st:'Step 1 · Escalate',pk:'pkEsc',
    tx:function(){return hoffChan==='voice'
@@ -951,47 +972,76 @@ var HOFF_STEPS=[
   {st:'Step 2 · Collect the context',pk:'pkPkg',
    tx:function(){return "Ada pulls the key facts out of the conversation — <b>who the customer is, their intent, the order in question and whether they're verified</b> — into a structured handoff payload.";}},
   {st:'Step 3 · Route to a queue &amp; agent',pk:'pkRte',
-   tx:function(){return hoffChan==='voice'
-     ? "It warm-transfers the call over <b>2-way SIP</b> to <b>"+DESTS[hoffDest].name+"</b>, into the <b>relevant queue</b> and on to an available agent — here the Billing queue and Maria."
-     : "It routes the conversation via <b>API</b> into <b>"+DESTS[hoffDest].name+"</b>, to the <b>relevant queue</b> and an available agent — here the Billing queue and Maria.";}},
+   tx:function(){var d=curDest();
+     if(hoffChan==='voice'){
+       var m = d.ct==='full' ? " The conversation context is carried into the call."
+             : d.ct==='setup' ? " Context is carried into the call via a one-time Salesforce setup, not a pre-built integration."
+             : " This is a telephony transfer — the call moves across, but Ada's structured context isn't carried down the trunk automatically.";
+       return "It warm-transfers the live call to <b>"+d.name+"</b> over <b>"+d.mech+"</b>, into the <b>Billing queue</b> and on to Maria."+m;
+     }
+     if(d.type==='ticketing'){
+       return "It creates a case in <b>"+d.name+"</b> — a <b>ticketing handoff</b> — routed to the <b>Billing queue</b> with the full transcript and context attached. Handled asynchronously, not live.";
+     }
+     return "It routes the conversation into <b>"+d.name+"</b> via Ada's <b>messaging handoff</b>, to the <b>Billing queue</b> and an available agent. The full transcript and context ride along.";
+   }},
   {st:'Step 4 · Human takes over',pk:'pkSnc',
-   tx:function(){return "<b>Maria — a human agent — is now speaking to the customer.</b> Her reply syncs straight back into the conversation, reaching the customer in the same "+(hoffChan==='voice'?'call':'chat window')+" — no repeating, no lost context.";}}
+   tx:function(){var d=curDest();
+     if(hoffChan==='voice' && d.ct==='none'){
+       return "<b>Maria — a human agent — is now on the call.</b> She has a short summary from Ada rather than an auto-synced transcript, and carries on with the customer from there.";
+     }
+     if(d.type==='ticketing'){
+       return "<b>A human agent picks up the case in "+d.name+"</b> with the full transcript attached, and replies to the customer — asynchronously, e.g. by email or messaging.";
+     }
+     return "<b>Maria — a human agent — is now speaking to the customer.</b> Her reply syncs straight back into the conversation, reaching the customer in the same "+(hoffChan==='voice'?'call':'chat window')+" — no repeating, no lost context.";
+   }}
 ];
 function renderDestChips(){
   var el=document.getElementById('destChips'); el.innerHTML='';
-  Object.keys(DESTS).forEach(function(key){
-    var d=DESTS[key];
-    var b=document.createElement('button'); b.className='chipbtn'+(key===hoffDest?' on':'');
-    b.onclick=function(){hoffDest=key; renderDestChips(); paintDesk(); applyActive(cur);};
+  HDEST[hoffChan].forEach(function(d){
+    var b=document.createElement('button'); b.className='chipbtn'+(d.key===hoffDest?' on':'');
+    b.onclick=function(){hoffDest=d.key; renderDestChips(); paintDesk(); updateRoute(); applyActive(cur);};
     b.innerHTML='<img src="'+iconUrl(d.slug)+'" alt="" onerror="this.style.display=\'none\';this.nextElementSibling.style.display=\'flex\'"><span class="mg">'+d.mg+'</span>'+d.name;
     el.appendChild(b);
   });
 }
 function paintDesk(){
-  var d=DESTS[hoffDest];
+  var d=curDest();
   var img=document.getElementById('hDeskLogo'); img.style.display=''; img.src=iconUrl(d.slug);
   document.getElementById('hDeskMg').style.display='none';
   document.getElementById('hDeskName').textContent=d.name;
-  document.getElementById('hDeskMech').textContent=(hoffChan==='voice'?d.voice:d.chat);
+  document.getElementById('hDeskMech').textContent=d.mech;
+}
+function updateRoute(){
+  var d=curDest();
+  document.getElementById('rteLbl').textContent=d.rte;
+  document.getElementById('pkRte').querySelector('.dir').textContent=(hoffChan==='voice'?'📞':(d.type==='ticketing'?'🎫':'→'));
+  var del=document.getElementById('hDeliver'); del.className='deliver';
+  if(d.type==='ticketing'){del.classList.add('ok');del.innerHTML='✓ Transcript &amp; context attached to the case';}
+  else if(d.ct==='full'){del.classList.add('ok');del.innerHTML='✓ Context delivered to the agent';}
+  else if(d.ct==='setup'){del.classList.add('ok');del.innerHTML='✓ Context delivered · via one-time setup';}
+  else{del.classList.add('warn');del.innerHTML='⚠ Telephony transfer · context summarised, not auto-delivered';}
+  var th=document.getElementById('hTransHdr');
+  if(th)th.textContent=(d.type==='ticketing')?'Transcript attached to case':(d.ct==='none'?'Summary shared with agent':'Synced transcript');
 }
 function setHoffChan(ch){
   hoffChan=ch;
+  var list=HDEST[ch], found=false;
+  for(var i=0;i<list.length;i++){if(list[i].key===hoffDest){found=true;break;}}
+  if(!found)hoffDest=list[0].key;
   document.getElementById('hcChat').classList.toggle('on',ch==='chat');
   document.getElementById('hcVoice').classList.toggle('on',ch==='voice');
   document.getElementById('hChat').style.display=(ch==='chat'?'':'none');
   document.getElementById('hVoice').style.display=(ch==='voice'?'flex':'none');
   document.getElementById('hCustSub').textContent=(ch==='voice'?'live call':'web chat');
-  document.getElementById('rteLbl').textContent=(ch==='voice'?'2-way SIP':'API');
-  document.getElementById('pkRte').querySelector('.dir').textContent=(ch==='voice'?'📞':'→');
-  paintDesk(); applyActive(cur);
+  renderDestChips(); paintDesk(); updateRoute(); applyActive(cur);
 }
 function applyHoff(cur){
   ['pkEsc','pkPkg','pkRte','pkSnc'].forEach(function(id){document.getElementById(id).classList.remove('on');});
-  ['hDesk','hCtx','hRoute','hAgt','hTrans','hHumTurn'].forEach(function(id){var e=document.getElementById(id);if(e)e.classList.remove('on');});
+  ['hDesk','hCtx','hRoute','hDeliver','hAgt','hTrans','hHumTurn'].forEach(function(id){var e=document.getElementById(id);if(e)e.classList.remove('on');});
   var vh=document.getElementById('hVhum'); if(vh)vh.classList.remove('on');
   for(var k=0;k<=cur;k++){
     if(k>=1){document.getElementById('hDesk').classList.add('on');document.getElementById('hCtx').classList.add('on');}
-    if(k>=2){document.getElementById('hRoute').classList.add('on');document.getElementById('hAgt').classList.add('on');}
+    if(k>=2){document.getElementById('hRoute').classList.add('on');document.getElementById('hDeliver').classList.add('on');document.getElementById('hAgt').classList.add('on');}
     if(k>=3){document.getElementById('hTrans').classList.add('on');document.getElementById('hHumTurn').classList.add('on');if(vh)vh.classList.add('on');}
   }
   var s=HOFF_STEPS[cur]; if(s.pk)document.getElementById(s.pk).classList.add('on');
@@ -1042,7 +1092,7 @@ function playAll(){
 function stopPlay(){playing=false;document.getElementById('play').textContent='▶ Play';if(timer)clearInterval(timer);}
 
 /* init */
-renderDestChips(); paintDesk(); selectMod('conv');
+renderDestChips(); paintDesk(); updateRoute(); selectMod('conv');
 </script>
 </body>
 </html>
