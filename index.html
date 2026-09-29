@@ -28,11 +28,11 @@
   .brand .div{width:1px;height:26px;background:var(--stroke2)}
   .brand .t{font-size:18px;font-weight:700;letter-spacing:-.01em}
   .brand .t span{color:var(--ada2)}
-  .tagline{font-family:'JetBrains Mono',monospace;font-size:11px;color:var(--muted);letter-spacing:.04em;text-align:right}
+  .tagline{font-family:'JetBrains Mono',monospace;font-size:10.5px;color:var(--muted);letter-spacing:.03em;text-align:right;line-height:1.5}
 
   .hero{padding:14px 0 22px}
   .hero h1{font-size:30px;font-weight:800;letter-spacing:-.02em;line-height:1.1}
-  .hero p{color:var(--muted);font-size:15px;margin-top:8px;max-width:720px;line-height:1.5}
+  .hero p{color:var(--muted);font-size:15px;margin-top:8px;max-width:760px;line-height:1.5}
 
   .toggle{display:inline-flex;background:var(--panel);border:1px solid var(--stroke);border-radius:999px;padding:4px;margin:6px 0 24px;gap:2px}
   .toggle button{border:0;background:transparent;color:var(--muted);font-family:inherit;font-size:13.5px;font-weight:600;padding:9px 20px;border-radius:999px;cursor:pointer;transition:.2s}
@@ -41,11 +41,27 @@
   .view{display:none} .view.on{display:block;animation:fade .4s ease}
   @keyframes fade{from{opacity:0;transform:translateY(6px)}to{opacity:1;transform:none}}
 
+  /* ===== Overview tiles ===== */
+  .ov-lead{color:var(--muted);font-size:14px;line-height:1.5;max-width:720px;margin:-8px 0 20px}
+  .ov-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
+  @media(max-width:940px){.ov-grid{grid-template-columns:1fr 1fr}}
+  @media(max-width:600px){.ov-grid{grid-template-columns:1fr}}
+  .tile{background:var(--panel);border:1px solid var(--stroke);border-radius:16px;padding:18px;cursor:pointer;transition:.18s;position:relative;overflow:hidden;text-align:left}
+  .tile::before{content:"";position:absolute;left:0;top:0;bottom:0;width:3px;background:var(--acc)}
+  .tile:hover{border-color:var(--acc);transform:translateY(-3px);box-shadow:0 16px 34px rgba(0,0,0,.38)}
+  .tile .th{display:flex;align-items:center;gap:11px;margin-bottom:10px}
+  .tile .ic{width:34px;height:34px;border-radius:9px;display:flex;align-items:center;justify-content:center;font-size:17px;background:var(--panel3);border:1px solid var(--stroke)}
+  .tile .nm{font-size:15px;font-weight:700}
+  .tile .kd{font-family:'JetBrains Mono',monospace;font-size:8.5px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--acc);margin-top:2px}
+  .tile p{font-size:12.5px;color:var(--muted);line-height:1.5}
+  .tile .go{margin-top:11px;font-size:11.5px;font-weight:600;color:var(--acc);opacity:.92}
+
   /* ===== reference cards ===== */
   .cards{display:grid;grid-template-columns:1fr 1fr;gap:18px}
-  .card{background:var(--panel);border:1px solid var(--stroke);border-radius:16px;padding:20px 22px;display:flex;flex-direction:column;position:relative;overflow:hidden}
+  .card{background:var(--panel);border:1px solid var(--stroke);border-radius:16px;padding:20px 22px;display:flex;flex-direction:column;position:relative;overflow:hidden;scroll-margin-top:20px}
   .card::before{content:"";position:absolute;top:0;left:0;right:0;height:3px;background:var(--acc)}
   .card.sdk{--acc:var(--sdk)} .card.conv{--acc:var(--conv)} .card.eu{--acc:var(--eu)} .card.wh{--acc:var(--wh)}
+  .card.snap{--acc:#f0abfc} .card.dx{--acc:#38bdf8} .card.mcp{--acc:#c084fc} .card.cli{--acc:#5eead4}
   .card-h{display:flex;align-items:center;gap:11px;margin-bottom:4px}
   .card-ic{width:34px;height:34px;border-radius:9px;display:flex;align-items:center;justify-content:center;font-size:17px;background:var(--panel3);border:1px solid var(--stroke)}
   .card-h .nm{font-size:16px;font-weight:700}
@@ -60,13 +76,56 @@
   .detail{margin-top:12px;padding:11px 13px;background:var(--panel2);border:1px solid var(--stroke);border-radius:10px;font-size:12.5px;color:var(--body);line-height:1.5;min-height:44px}
   .detail .dn{font-family:'JetBrains Mono',monospace;color:var(--acc);font-weight:700}
   .detail.empty{color:var(--faint);font-style:italic}
+  .dolink{display:inline-flex;align-items:center;gap:6px;margin-top:13px;align-self:flex-start;background:var(--acc);color:#0b0c11;font-weight:700;font-size:12px;border:0;border-radius:9px;padding:9px 13px;cursor:pointer;font-family:inherit;transition:.15s}
+  .dolink:hover{filter:brightness(1.09)}
   .also{margin-top:22px;background:var(--panel);border:1px dashed var(--stroke2);border-radius:14px;padding:16px 20px;color:var(--muted);font-size:13px;line-height:1.6}
   .also b{color:var(--body)}
   .also .mono{color:var(--body)}
+  .backlink{background:none;border:0;color:var(--ada2);font-family:inherit;font-size:13px;font-weight:600;cursor:pointer;padding:0;margin-bottom:16px;display:inline-flex;gap:6px;align-items:center}
+  .backlink:hover{color:var(--ada)}
 
-  /* ===== scenario ===== */
+  /* ===== handoff matrix ===== */
+  .hoff{margin-top:26px;scroll-margin-top:20px}
+  .hoff-title{font-size:19px;font-weight:800;letter-spacing:-.01em;display:flex;align-items:center;gap:10px}
+  .hoff-title .ic{width:32px;height:32px;border-radius:9px;background:var(--panel3);border:1px solid var(--stroke);display:flex;align-items:center;justify-content:center;font-size:16px}
+  .hoff-lead{color:var(--muted);font-size:13px;line-height:1.55;max-width:780px;margin:10px 0 16px}
+  .hoff-cols{display:grid;grid-template-columns:1fr 1fr;gap:18px}
+  @media(max-width:900px){.hoff-cols{grid-template-columns:1fr}}
+  .hoff-col{background:var(--panel);border:1px solid var(--stroke);border-radius:16px;padding:18px;position:relative;overflow:hidden}
+  .hoff-col::before{content:"";position:absolute;top:0;left:0;right:0;height:3px;background:var(--hc)}
+  .hoff-col.chat{--hc:#22d3ee} .hoff-col.voice{--hc:#fb7185}
+  .hoff-col h4{font-size:15px;font-weight:700;display:flex;align-items:center;gap:9px}
+  .hoff-col h4 .ic{width:30px;height:30px;border-radius:8px;background:var(--panel3);border:1px solid var(--stroke);display:flex;align-items:center;justify-content:center;font-size:15px}
+  .hoff-col .sub{font-size:11.5px;color:var(--muted);margin:6px 0 2px}
+  .lgwall{display:flex;flex-wrap:wrap;gap:8px;margin-top:12px}
+  .lg{display:flex;align-items:center;gap:7px;background:var(--panel2);border:1px solid var(--stroke);border-radius:10px;padding:7px 10px;font-size:12px;color:var(--body);transition:.15s}
+  .lg:hover{border-color:var(--stroke2);color:var(--ink)}
+  .lg img{width:15px;height:15px;object-fit:contain;filter:grayscale(1) brightness(1.5);opacity:.92}
+  .lg .mg{width:15px;height:15px;border-radius:4px;background:var(--panel3);border:1px solid var(--stroke2);display:none;align-items:center;justify-content:center;font-size:8px;font-weight:800;color:var(--body)}
+  .lg .rd{width:7px;height:7px;border-radius:50%;flex:0 0 auto}
+  .rd.ga{background:#2ecc71}.rd.lim{background:#f5a623}.rd.rm{background:#5b6172}
+  .lg .tag{font-family:'JetBrains Mono',monospace;font-size:8px;color:var(--muted);border:1px solid var(--stroke);border-radius:5px;padding:1px 5px}
+  .hoff-legend{display:flex;flex-wrap:wrap;gap:16px;margin-top:16px;font-size:11px;color:var(--muted);align-items:center}
+  .hoff-legend span{display:inline-flex;align-items:center;gap:6px}
+  .hoff-legend .rd{width:7px;height:7px;border-radius:50%}
+  .hoff-note{margin-top:12px;font-size:11.5px;color:var(--faint);line-height:1.5}
+  .hoff-note b{color:var(--muted)}
+
+  /* ===== scenario / examples ===== */
+  .exsel{display:flex;gap:8px;margin-bottom:18px;flex-wrap:wrap}
+  .exsel button{background:var(--panel);border:1px solid var(--stroke);color:var(--muted);font-family:inherit;font-size:13px;font-weight:600;padding:9px 16px;border-radius:10px;cursor:pointer;transition:.18s}
+  .exsel button.on{background:var(--ada);border-color:var(--ada);color:#fff}
+  .exmod{display:none} .exmod.on{display:block}
+  .subtoggle{display:flex;gap:6px;margin-bottom:14px;flex-wrap:wrap;align-items:center}
+  .subtoggle .lbl{font-family:'JetBrains Mono',monospace;font-size:9.5px;color:var(--muted);margin-right:2px;text-transform:uppercase;letter-spacing:.08em}
+  .chipbtn{background:var(--panel2);border:1px solid var(--stroke);color:var(--body);font-family:inherit;font-size:12px;font-weight:600;padding:6px 12px;border-radius:999px;cursor:pointer;transition:.15s;display:inline-flex;align-items:center;gap:6px}
+  .chipbtn.on{background:var(--panel3);border-color:var(--ada);color:var(--ink)}
+  .chipbtn:hover{border-color:var(--stroke2)}
+  .chipbtn img{width:13px;height:13px;object-fit:contain;filter:grayscale(1) brightness(1.5)}
+  .chipbtn .mg{width:13px;height:13px;border-radius:3px;background:var(--panel);border:1px solid var(--stroke2);display:none;align-items:center;justify-content:center;font-size:7px;font-weight:800}
+
   .scn-top{display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:14px;margin-bottom:16px}
-  .scn-top .lead{color:var(--muted);font-size:14px;max-width:640px;line-height:1.5}
+  .scn-top .lead{color:var(--muted);font-size:14px;max-width:620px;line-height:1.5}
   .player{display:flex;align-items:center;gap:8px}
   .player button{background:var(--panel);border:1px solid var(--stroke2);color:var(--ink);font-family:inherit;font-size:13px;font-weight:600;border-radius:9px;padding:9px 14px;cursor:pointer}
   .player button.primary{background:var(--ada);border-color:var(--ada);color:#fff}
@@ -75,24 +134,25 @@
   .stepdots i{width:7px;height:7px;border-radius:50%;background:var(--stroke2);transition:.2s}
   .stepdots i.on{background:var(--ada);transform:scale(1.25)}
 
-  .stage{display:grid;grid-template-columns:1fr 92px 1fr;gap:0;align-items:stretch}
-  .col{background:var(--panel);border:1px solid var(--stroke);border-radius:16px;padding:16px;min-height:520px;display:flex;flex-direction:column}
+  .stage{display:grid;grid-template-columns:1fr 96px 1fr;gap:0;align-items:stretch}
+  .col{background:var(--panel);border:1px solid var(--stroke);border-radius:16px;padding:16px;min-height:540px;display:flex;flex-direction:column}
   .col-h{display:flex;align-items:center;gap:9px;font-size:13px;font-weight:700;padding-bottom:12px;border-bottom:1px solid var(--stroke);margin-bottom:12px}
   .col-h .b{width:8px;height:8px;border-radius:50%}
-  .col.app .b{background:var(--conv)} .col.ada .b{background:var(--ada)}
+  .col.app .b{background:var(--conv)} .col.ada .b{background:var(--ada)} .col.cust .b{background:#fb7185} .col.dest .b{background:#f5a623}
   .col-h .sub{margin-left:auto;font-family:'JetBrains Mono',monospace;font-size:10px;color:var(--muted);font-weight:500}
 
-  /* mock chat UI in Your App */
   .appui{flex:1;display:flex;flex-direction:column;background:var(--panel2);border:1px solid var(--stroke);border-radius:12px;overflow:hidden}
   .appui .bar{background:var(--conv);color:#052b31;font-weight:700;font-size:12.5px;padding:9px 13px;display:flex;align-items:center;gap:8px}
+  .appui .bar.rose{background:#fb7185;color:#3a0a14}
   .appui .bar .d{margin-left:auto;font-family:'JetBrains Mono',monospace;font-size:9.5px;opacity:.7;font-weight:700}
   .appui .body{flex:1;padding:13px;display:flex;flex-direction:column;gap:9px;overflow-y:auto}
   .ctx{background:rgba(52,211,153,.1);border:1px solid rgba(52,211,153,.35);border-radius:9px;padding:8px 11px;font-size:11px;color:#9decc4;opacity:0;transform:translateY(6px);transition:.4s}
   .ctx.on{opacity:1;transform:none}
   .ctx b{color:#d6ffe9}
-  .msg{max-width:86%;padding:9px 12px;border-radius:13px;font-size:13px;line-height:1.45;opacity:0;transform:translateY(8px);transition:.4s}
+  .msg{max-width:88%;padding:9px 12px;border-radius:13px;font-size:12.5px;line-height:1.45;opacity:0;transform:translateY(8px);transition:.4s}
   .msg.on{opacity:1;transform:none}
   .msg.u{align-self:flex-end;background:var(--conv);color:#052b31;border-bottom-right-radius:4px;font-weight:500}
+  .msg.u.rose{background:#fb7185;color:#3a0a14}
   .msg.a{align-self:flex-start;background:var(--panel3);color:var(--ink);border-bottom-left-radius:4px}
   .typing{align-self:flex-start;background:var(--panel3);border-radius:13px;padding:11px 13px;display:flex;gap:4px;opacity:0;transition:.3s}
   .typing.on{opacity:1}
@@ -100,36 +160,61 @@
   .typing span:nth-child(2){animation-delay:.2s}.typing span:nth-child(3){animation-delay:.4s}
   @keyframes blink{0%,60%,100%{opacity:.3}30%{opacity:1}}
 
-  /* center wire */
+  .voicecall{flex:1;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:14px;padding:22px;background:var(--panel2);border:1px solid var(--stroke);border-radius:12px}
+  .voicecall .orb{width:76px;height:76px;border-radius:50%;background:radial-gradient(circle at 40% 35%,#fecdd3,#fb7185 58%,#9f1239);box-shadow:0 0 34px rgba(251,113,133,.5)}
+  .voicecall .cap{text-align:center;font-size:13px;color:#ffd7dd;font-weight:600;max-width:200px;line-height:1.4}
+  .voicecall .wave{display:flex;gap:4px;align-items:center;height:20px}
+  .voicecall .wave i{width:4px;border-radius:2px;background:#fecdd3;display:block}
+
   .wire{position:relative;display:flex;flex-direction:column;align-items:center;justify-content:center}
   .wire .line{position:absolute;top:20px;bottom:20px;width:2px;background:repeating-linear-gradient(180deg,var(--stroke2) 0 6px,transparent 6px 12px)}
-  .packet{position:relative;z-index:2;background:var(--panel3);border:1px solid var(--stroke2);border-radius:9px;padding:7px 4px;width:78px;text-align:center;font-family:'JetBrains Mono',monospace;font-size:9px;font-weight:700;color:var(--muted);opacity:.5;transition:.3s}
+  .packet{position:relative;z-index:2;background:var(--panel3);border:1px solid var(--stroke2);border-radius:9px;padding:7px 4px;width:82px;text-align:center;font-family:'JetBrains Mono',monospace;font-size:8.5px;font-weight:700;color:var(--muted);opacity:.45;transition:.3s}
   .packet.on{opacity:1;color:#fff;border-color:var(--pc);box-shadow:0 0 0 1px var(--pc),0 6px 18px rgba(0,0,0,.3)}
   .packet .dir{font-size:13px;line-height:1;margin-bottom:3px}
-  .packet.req{--pc:var(--conv)} .packet.eu{--pc:var(--eu)} .packet.wh{--pc:var(--wh)}
+  .packet.chan{--pc:var(--sdk)} .packet.req{--pc:var(--conv)} .packet.eu{--pc:var(--eu)} .packet.act{--pc:var(--wh)} .packet.wh{--pc:var(--conv)}
+  .packet.esc{--pc:#fb7185} .packet.pkg{--pc:var(--ada)} .packet.rte{--pc:#f5a623} .packet.snc{--pc:var(--eu)}
+  .wsp{height:12px}
 
-  /* Ada side */
-  .ada-body{flex:1;display:flex;flex-direction:column;gap:11px}
-  .apic{background:var(--panel2);border:1px solid var(--stroke);border-radius:11px;overflow:hidden;opacity:.35;transition:.35s}
+  .ada-body{flex:1;display:flex;flex-direction:column;gap:10px}
+  .apic{background:var(--panel2);border:1px solid var(--stroke);border-radius:11px;overflow:hidden;opacity:.32;transition:.35s}
   .apic.on{opacity:1;border-color:var(--ac)}
-  .apic.eu{--ac:var(--eu)} .apic.conv{--ac:var(--conv)} .apic.wh{--ac:var(--wh)}
-  .apic .h{display:flex;align-items:center;gap:8px;padding:8px 11px;border-bottom:1px solid var(--stroke);font-family:'JetBrains Mono',monospace;font-size:10.5px;font-weight:700}
+  .apic.eu{--ac:var(--eu)} .apic.conv{--ac:var(--conv)} .apic.wh{--ac:var(--conv)} .apic.chan{--ac:var(--sdk)} .apic.act{--ac:var(--wh)}
+  .apic .h{display:flex;align-items:center;gap:8px;padding:8px 11px;border-bottom:1px solid var(--stroke);font-family:'JetBrains Mono',monospace;font-size:10px;font-weight:700}
   .apic .h .m{color:var(--ac)}
-  .apic .h .tag{margin-left:auto;font-size:8.5px;color:var(--muted);letter-spacing:.06em;text-transform:uppercase}
-  .apic pre{padding:9px 11px;font-family:'JetBrains Mono',monospace;font-size:10.5px;line-height:1.5;color:var(--body);white-space:pre-wrap;word-break:break-word;max-height:150px;overflow:auto}
+  .apic .h .tag{margin-left:auto;font-size:8px;color:var(--muted);letter-spacing:.05em;text-transform:uppercase}
+  .apic pre{padding:9px 11px;font-family:'JetBrains Mono',monospace;font-size:10px;line-height:1.5;color:var(--body);white-space:pre-wrap;word-break:break-word;max-height:140px;overflow:auto}
   .apic pre .k{color:#9db4ff}.apic pre .s{color:#8ee9a6}.apic pre .n{color:#f5c06b}
-  .agentchip{display:flex;align-items:center;gap:9px;background:var(--ada-soft);border:1px solid rgba(124,92,255,.3);border-radius:11px;padding:10px 12px;font-size:12.5px;color:var(--ada2);opacity:0;transition:.4s}
+  .agentchip{display:flex;align-items:center;gap:9px;background:var(--ada-soft);border:1px solid rgba(124,92,255,.3);border-radius:11px;padding:10px 12px;font-size:12px;color:var(--ada2);opacity:0;transition:.4s}
   .agentchip.on{opacity:1}
   .agentchip .sp{width:12px;height:12px;border-radius:50%;border:2px solid rgba(124,92,255,.35);border-top-color:var(--ada);animation:spin .7s linear infinite}
   @keyframes spin{to{transform:rotate(360deg)}}
   .agentchip.done .sp{border:none;width:auto;height:auto} .agentchip.done .sp::after{content:"✓";color:var(--green)}
 
+  /* agent desktop (handoff dest) */
+  .desk{flex:1;display:flex;flex-direction:column;background:var(--panel2);border:1px solid var(--stroke);border-radius:12px;overflow:hidden;opacity:.35;transition:.4s}
+  .desk.on{opacity:1}
+  .desk .dbar{background:var(--panel3);border-bottom:1px solid var(--stroke);padding:10px 12px;display:flex;align-items:center;gap:9px;font-size:12.5px;font-weight:700}
+  .desk .dbar img{width:19px;height:19px;object-fit:contain;filter:grayscale(1) brightness(1.6)}
+  .desk .dbar .mg{width:19px;height:19px;border-radius:5px;background:var(--panel);border:1px solid var(--stroke2);display:none;align-items:center;justify-content:center;font-size:8px;font-weight:800}
+  .desk .dbar .st{margin-left:auto;font-family:'JetBrains Mono',monospace;font-size:8.5px;color:var(--muted);font-weight:600;text-transform:uppercase;letter-spacing:.05em}
+  .desk .dbody{flex:1;padding:12px;display:flex;flex-direction:column;gap:10px}
+  .agtrow{display:flex;align-items:center;gap:8px;font-size:11.5px;color:var(--body);opacity:0;transition:.4s}
+  .agtrow.on{opacity:1}
+  .agtrow .av{width:24px;height:24px;border-radius:50%;background:linear-gradient(135deg,#fb7185,#f59e0b);display:flex;align-items:center;justify-content:center;font-size:10px;font-weight:800;color:#fff}
+  .ctxcard{background:var(--panel);border:1px solid var(--stroke);border-radius:10px;padding:11px;opacity:0;transform:translateY(6px);transition:.4s}
+  .ctxcard.on{opacity:1;transform:none}
+  .ctxcard .cl{font-family:'JetBrains Mono',monospace;font-size:8.5px;letter-spacing:.09em;text-transform:uppercase;color:var(--muted);margin-bottom:7px}
+  .ctxcard .row{font-size:11px;color:var(--body);display:flex;justify-content:space-between;padding:2px 0}
+  .ctxcard .row b{color:var(--ink)}
+  .transcript{background:var(--panel);border:1px solid var(--stroke);border-radius:10px;padding:11px;font-size:10.5px;color:var(--muted);line-height:1.6;opacity:0;transition:.4s;max-height:150px;overflow:auto}
+  .transcript.on{opacity:1}
+  .transcript b{color:var(--body)}
+
   .narr{margin-top:16px;background:var(--panel);border:1px solid var(--stroke);border-left:3px solid var(--ada);border-radius:12px;padding:14px 18px}
   .narr .st{font-family:'JetBrains Mono',monospace;font-size:10px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--ada2)}
-  .narr .tx{font-size:14.5px;color:var(--ink);margin-top:5px;line-height:1.5}
+  .narr .tx{font-size:14px;color:var(--ink);margin-top:5px;line-height:1.5}
   .narr .tx b{color:#fff}
 
-  /* contrast footer */
   .contrast{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-top:22px}
   .cc{background:var(--panel);border:1px solid var(--stroke);border-radius:14px;padding:16px 18px}
   .cc h4{font-size:14px;font-weight:700;display:flex;align-items:center;gap:8px}
@@ -139,7 +224,7 @@
   .cc code{font-family:'JetBrains Mono',monospace;font-size:11.5px;color:var(--body);background:var(--panel2);border:1px solid var(--stroke);border-radius:6px;padding:1px 6px}
 
   footer{color:var(--faint);font-size:11.5px;text-align:center;padding:30px 0 24px}
-  @media(max-width:900px){.cards,.contrast{grid-template-columns:1fr}.stage{grid-template-columns:1fr;gap:12px}.wire{flex-direction:row;min-height:60px}.wire .line{display:none}}
+  @media(max-width:900px){.cards,.contrast{grid-template-columns:1fr}.stage{grid-template-columns:1fr;gap:12px}.wire{flex-direction:row;min-height:60px;gap:8px}.wire .line{display:none}.wsp{width:8px;height:auto}}
 
   /* ===== Design Options ===== */
   .do-intro{max-width:780px;margin:2px auto 30px;text-align:center}
@@ -188,36 +273,77 @@
       <span class="div"></span>
       <span class="t">API <span>Explorer</span></span>
     </div>
-    <div class="tagline">Front-end SDK · Conversations API<br>End Users API · Webhooks &amp; Events</div>
+    <div class="tagline">Front-end SDK · Conversations · End Users · Webhooks<br>Snapshots · Handoff · Data Export · MCP · CLI</div>
   </header>
 
   <div class="hero">
     <h1>Everything you can build on Ada's APIs</h1>
-    <p>Ada isn't just a chat widget — it's a conversation engine you can embed, extend and drive from your own systems. Browse the methods, then watch how they work together to power a fully custom experience.</p>
+    <p>Ada isn't just a chat widget — it's a conversation engine you can embed, extend, drive and manage from your own systems. Start with the <b style="color:var(--body)">Overview</b>, dig into the <b style="color:var(--body)">Details</b>, or watch the APIs work together in <b style="color:var(--body)">Examples</b>.</p>
   </div>
 
   <div class="toggle">
-    <button id="tabRef" class="on" onclick="show('ref')">Reference</button>
-    <button id="tabScn" onclick="show('scn')">See it in action</button>
-    <button id="tabDes" onclick="show('des')">Design Options</button>
+    <button id="tabOvr" class="on" onclick="show('ovr')">Overview</button>
+    <button id="tabDet" onclick="show('det')">Details</button>
+    <button id="tabExm" onclick="show('exm')">Examples</button>
   </div>
 
-  <!-- ================= REFERENCE ================= -->
-  <div class="view on" id="viewRef">
-    <div class="cards" id="cards"></div>
-    <div class="also">
+  <!-- ================= OVERVIEW ================= -->
+  <div class="view on" id="viewOvr">
+    <div class="ov-lead">Nine building blocks span the whole platform — from the front-end your customers see, to the engine that reasons, to the tooling you run it with. Tap any family to jump to its methods.</div>
+    <div class="ov-grid" id="tiles"></div>
+    <div class="also" style="margin-top:22px">
       <b>Also in the platform:</b> <span class="mono">Knowledge API</span> (import &amp; sync articles) ·
-      <span class="mono">Data Export API</span> (conversation &amp; message records to your warehouse) ·
       <span class="mono">Integrations API</span> (connect external apps &amp; knowledge sources) ·
       <span class="mono">Bulk End-User Deletion API</span> (compliance / right-to-erasure).
       &nbsp;All authenticated with a rotatable API key.
     </div>
   </div>
 
-  <!-- ================= SCENARIO ================= -->
-  <div class="view" id="viewScn">
+  <!-- ================= DETAILS ================= -->
+  <div class="view" id="viewDet">
+    <div class="cards" id="cards"></div>
+
+    <!-- Handoff capability matrix -->
+    <div class="hoff" id="fam-handoff">
+      <div class="hoff-title"><span class="ic">🤝</span> Handoff — where Ada connects to a human</div>
+      <div class="hoff-lead">When the AI agent reaches its limit, it hands off to a live agent on your existing platform — carrying the full transcript, intent and context so the customer never repeats themselves. Coverage below is from Ada's <b style="color:var(--body)">AI Agent Integration Readiness</b> (updated Sep 2026). <span style="color:var(--faint)">Ratings reflect pre-built integrations; anything not listed is typically supported via 2-way SIP (voice) or our CPaaS layer (messaging) on request.</span></div>
+      <div class="hoff-cols">
+        <div class="hoff-col chat">
+          <h4><span class="ic">💬</span> Chat &amp; Messaging</h4>
+          <div class="sub">Escalate a web-chat or messaging conversation into an agent workspace — the transcript &amp; context travel with it.</div>
+          <div class="lgwall" id="chatWall"></div>
+        </div>
+        <div class="hoff-col voice">
+          <h4><span class="ic">📞</span> Voice</h4>
+          <div class="sub">Warm-transfer a live call to your contact centre. <span class="mono" style="color:var(--body)">SIP</span> = 2-way SIP (carries context) · <span class="mono" style="color:var(--body)">PSTN</span> = telephony transfer · <span class="mono" style="color:var(--body)">ctx</span> = context transfer.</div>
+          <div class="lgwall" id="voiceWall"></div>
+        </div>
+      </div>
+      <div class="hoff-legend">
+        <span><span class="rd ga"></span> Generally available</span>
+        <span><span class="rd lim"></span> Limited / SA-assisted</span>
+        <span><span class="rd rm"></span> On the roadmap</span>
+      </div>
+      <div class="hoff-note"><b>Voice note:</b> 2-way SIP is preferred and carries conversation context into the call; PSTN transfer works everywhere but adds a per-conversation fee. Not listed? Most platforms can be enabled via 2-way SIP on request.</div>
+    </div>
+
+    <div class="also">
+      <b>Also in the platform:</b> <span class="mono">Knowledge API</span> (import &amp; sync articles) ·
+      <span class="mono">Integrations API</span> (connect external apps &amp; knowledge sources) ·
+      <span class="mono">Bulk End-User Deletion API</span> (compliance / right-to-erasure).
+      &nbsp;All authenticated with a rotatable API key.
+    </div>
+  </div>
+
+  <!-- ================= EXAMPLES ================= -->
+  <div class="view" id="viewExm">
+    <div class="exsel">
+      <button id="exConv" class="on" onclick="selectMod('conv')">Conversations API flow</button>
+      <button id="exHoff" onclick="selectMod('hoff')">Agent handoff routing</button>
+    </div>
+
     <div class="scn-top">
-      <div class="lead">One question — <b style="color:var(--ink)">"Where's my order?"</b> — answered inside <b style="color:var(--ink)">your own app UI</b>. Watch the End&nbsp;Users, Conversations and Webhook APIs work together.</div>
+      <div class="lead" id="exLead"></div>
       <div class="player">
         <button id="prev" onclick="step(-1)">◀ Prev</button>
         <button id="play" class="primary" onclick="playAll()">▶ Play</button>
@@ -226,52 +352,130 @@
       </div>
     </div>
 
-    <div class="stage">
-      <!-- Your App -->
-      <div class="col app">
-        <div class="col-h"><span class="b"></span> Your App <span class="sub">custom UI — you build it</span></div>
-        <div class="appui">
-          <div class="bar">Support <span class="d">acme.com</span></div>
-          <div class="body" id="appBody">
-            <div class="ctx" id="ctx">👤 <b>Alex Rivera</b> · Premium · last order #10432<br><span style="opacity:.7">context passed to Ada before the chat starts</span></div>
-            <div class="msg u" id="mUser">Where's my order?</div>
-            <div class="typing" id="typing"><span></span><span></span><span></span></div>
-            <div class="msg a" id="mAI">Hi Alex — your order <b>#10432</b> shipped yesterday and is out for delivery today by 6pm. Want the tracking link?</div>
+    <!-- ---- Module: Conversations flow ---- -->
+    <div class="exmod on" id="modConv">
+      <div class="stage">
+        <div class="col app">
+          <div class="col-h"><span class="b"></span> Your App <span class="sub">custom UI — you build it</span></div>
+          <div class="appui">
+            <div class="bar">Support <span class="d">acme.com</span></div>
+            <div class="body">
+              <div class="ctx" id="ctx">👤 <b>Alex Rivera</b> · Premium · last order #10432<br><span style="opacity:.7">context passed to Ada before the chat starts</span></div>
+              <div class="msg u" id="mUser">Where's my order?</div>
+              <div class="typing" id="typing"><span></span><span></span><span></span></div>
+              <div class="msg a" id="mAI">Hi Alex — your order <b>#10432</b> shipped yesterday and is out for delivery today by 6pm. Want the tracking link?</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="wire">
+          <div class="line"></div>
+          <div class="packet chan" id="pkChan"><div class="dir">⇅</div>channel</div>
+          <div class="wsp"></div>
+          <div class="packet eu" id="pkEU"><div class="dir">↑</div>context</div>
+          <div class="wsp"></div>
+          <div class="packet req" id="pkReq"><div class="dir">↑</div>message</div>
+          <div class="wsp"></div>
+          <div class="packet act" id="pkAct"><div class="dir">⇄</div>action</div>
+          <div class="wsp"></div>
+          <div class="packet wh" id="pkWH"><div class="dir">↓</div>webhook</div>
+        </div>
+
+        <div class="col ada">
+          <div class="col-h"><span class="b"></span> Ada <span class="sub">conversation engine</span></div>
+          <div class="ada-body">
+            <div class="apic chan" id="acChan">
+              <div class="h"><span class="m">POST</span> /v2/channels <span class="tag">Conversations API</span></div>
+              <pre><span class="k">"name"</span>: <span class="s">"acme-web"</span>,
+<span class="k">"description"</span>: <span class="s">"Custom web channel"</span></pre>
+            </div>
+            <div class="apic eu" id="acEU">
+              <div class="h"><span class="m">POST</span> /v2/end-users <span class="tag">End Users API</span></div>
+              <pre><span class="k">"external_id"</span>: <span class="s">"user_8842"</span>,
+<span class="k">"meta_fields"</span>: { <span class="k">"name"</span>:<span class="s">"Alex"</span>, <span class="k">"plan"</span>:<span class="s">"Premium"</span>, <span class="k">"last_order"</span>:<span class="s">"#10432"</span> },
+<span class="k">"sensitive_meta_fields"</span>: { <span class="k">"auth_token"</span>:<span class="s">"•••••"</span> }</pre>
+            </div>
+            <div class="apic conv" id="acConv">
+              <div class="h"><span class="m">POST</span> …/conversations/{id}/messages <span class="tag">Conversations API</span></div>
+              <pre><span class="k">"author"</span>: <span class="s">"end_user"</span>,
+<span class="k">"content"</span>: <span class="s">"Where's my order?"</span></pre>
+            </div>
+            <div class="agentchip" id="agent"><span class="sp"></span><span id="agentTxt">AI Agent reasoning · running playbook</span></div>
+            <div class="apic act" id="acAct">
+              <div class="h"><span class="m">GET</span> api.acme.com/orders/10432 <span class="tag">Action → your API</span></div>
+              <pre><span class="k">"status"</span>: <span class="s">"out_for_delivery"</span>,
+<span class="k">"eta"</span>: <span class="s">"today 6pm"</span></pre>
+            </div>
+            <div class="apic wh" id="acWH">
+              <div class="h"><span class="m">POST</span> → your webhook <span class="tag">Event · Svix</span></div>
+              <pre><span class="k">"event"</span>: <span class="s">"v1.conversation.message"</span>,
+<span class="k">"author"</span>: <span class="s">"ai_agent"</span>,
+<span class="k">"content"</span>: <span class="s">"Hi Alex — your order #10432…"</span></pre>
+            </div>
           </div>
         </div>
       </div>
+    </div>
 
-      <!-- wire -->
-      <div class="wire">
-        <div class="line"></div>
-        <div class="packet eu" id="pkEU"><div class="dir">↑</div>context</div>
-        <div style="height:14px"></div>
-        <div class="packet req" id="pkReq"><div class="dir">↑</div>message</div>
-        <div style="height:14px"></div>
-        <div class="packet wh" id="pkWH"><div class="dir">↓</div>webhook</div>
+    <!-- ---- Module: Handoff routing ---- -->
+    <div class="exmod" id="modHoff">
+      <div class="subtoggle">
+        <span class="lbl">Channel</span>
+        <button class="chipbtn on" id="hcChat" onclick="setHoffChan('chat')">💬 Chat &amp; messaging</button>
+        <button class="chipbtn" id="hcVoice" onclick="setHoffChan('voice')">📞 Voice</button>
+        <span class="lbl" style="margin-left:12px">Destination</span>
+        <span id="destChips"></span>
       </div>
+      <div class="stage">
+        <div class="col cust">
+          <div class="col-h"><span class="b"></span> Customer <span class="sub" id="hCustSub">web chat</span></div>
+          <div id="hChat" class="appui">
+            <div class="bar rose">Support <span class="d">acme.com</span></div>
+            <div class="body">
+              <div class="msg u rose on" id="hU1">I've been charged twice and I need this sorted by a person, please.</div>
+              <div class="msg a on" id="hA1">Completely understand — I'm connecting you to a specialist now, with everything you've told me.</div>
+              <div class="msg a" id="hA2" style="background:rgba(251,113,133,.14);color:#ffd7dd;font-size:11.5px">↗ Handing off to a human agent…</div>
+            </div>
+          </div>
+          <div id="hVoice" class="voicecall" style="display:none">
+            <div class="orb"></div>
+            <div class="wave"><i style="height:8px"></i><i style="height:15px"></i><i style="height:20px"></i><i style="height:12px"></i><i style="height:18px"></i><i style="height:9px"></i></div>
+            <div class="cap" id="hVcap">Live call · caller asks to speak with an agent</div>
+          </div>
+        </div>
 
-      <!-- Ada -->
-      <div class="col ada">
-        <div class="col-h"><span class="b"></span> Ada <span class="sub">conversation engine</span></div>
-        <div class="ada-body">
-          <div class="apic eu" id="acEU">
-            <div class="h"><span class="m">POST</span> /v2/end-users <span class="tag">End Users API</span></div>
-            <pre><span class="k">"external_id"</span>: <span class="s">"user_8842"</span>,
-<span class="k">"meta_fields"</span>: { <span class="k">"name"</span>:<span class="s">"Alex"</span>, <span class="k">"plan"</span>:<span class="s">"Premium"</span>, <span class="k">"last_order"</span>:<span class="s">"#10432"</span> },
-<span class="k">"sensitive_meta_fields"</span>: { <span class="k">"auth_token"</span>:<span class="s">"•••••"</span> }</pre>
-          </div>
-          <div class="apic conv" id="acConv">
-            <div class="h"><span class="m">POST</span> /v2/conversations/{id}/messages <span class="tag">Conversations API</span></div>
-            <pre><span class="k">"author"</span>: <span class="s">"end_user"</span>,
-<span class="k">"content"</span>: <span class="s">"Where's my order?"</span></pre>
-          </div>
-          <div class="agentchip" id="agent"><span class="sp"></span><span id="agentTxt">AI Agent reasoning · retrieving order status</span></div>
-          <div class="apic wh" id="acWH">
-            <div class="h"><span class="m">POST</span> → your webhook <span class="tag">Event · Svix</span></div>
-            <pre><span class="k">"event"</span>: <span class="s">"v1.conversation.message"</span>,
-<span class="k">"author"</span>: <span class="s">"ai_agent"</span>,
-<span class="k">"content"</span>: <span class="s">"Hi Alex — your order #10432…"</span></pre>
+        <div class="wire">
+          <div class="line"></div>
+          <div class="packet esc" id="pkEsc"><div class="dir">⚑</div>escalate</div>
+          <div class="wsp"></div>
+          <div class="packet pkg" id="pkPkg"><div class="dir">📦</div>context</div>
+          <div class="wsp"></div>
+          <div class="packet rte" id="pkRte"><div class="dir">→</div><span id="rteLbl">SunCo</span></div>
+          <div class="wsp"></div>
+          <div class="packet snc" id="pkSnc"><div class="dir">⟲</div>sync</div>
+        </div>
+
+        <div class="col dest">
+          <div class="col-h"><span class="b"></span> Human agent <span class="sub" id="hDestSub">agent desktop</span></div>
+          <div class="desk" id="hDesk">
+            <div class="dbar"><img id="hDeskLogo" src="" alt="" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'"><span class="mg" id="hDeskMg">SF</span><span id="hDeskName">Salesforce</span><span class="st" id="hDeskMech">MIAW</span></div>
+            <div class="dbody">
+              <div class="agtrow" id="hAgt"><span class="av">M</span> <span><b style="color:var(--ink)">Maria G.</b> · Tier-2 Billing · picked up in 0:12</span></div>
+              <div class="ctxcard" id="hCtx">
+                <div class="cl">Context delivered with the handoff</div>
+                <div class="row"><span>Customer</span><b>Alex Rivera · Premium</b></div>
+                <div class="row"><span>Intent</span><b>Duplicate charge</b></div>
+                <div class="row"><span>Order</span><b>#10432 · £129 ×2</b></div>
+                <div class="row"><span>Predicted CSAT</span><b>At-risk ⚠</b></div>
+              </div>
+              <div class="transcript" id="hTrans">
+                <b>Full transcript</b><br>
+                <b>Alex:</b> I've been charged twice…<br>
+                <b>Ada:</b> I can see two £129 charges on 24 Sep against order #10432.<br>
+                <b>Alex:</b> I need a person.<br>
+                <b>Ada:</b> Connecting you now — Maria has everything.
+              </div>
+            </div>
           </div>
         </div>
       </div>
@@ -279,7 +483,7 @@
 
     <div class="narr">
       <div class="st" id="narrStep">Step 0</div>
-      <div class="tx" id="narrText">Press <b>▶ Play</b> to watch a message travel from your custom UI, through Ada, and back — personalised, because you passed context first.</div>
+      <div class="tx" id="narrText">Press <b>▶ Play</b> to watch the sequence.</div>
     </div>
 
     <div class="contrast">
@@ -296,6 +500,7 @@
 
   <!-- ================= DESIGN OPTIONS ================= -->
   <div class="view" id="viewDes">
+    <button class="backlink" onclick="show('det')">← Back to Details</button>
     <div class="do-intro">
       <h2>Design the chat, not just the <span>answers</span></h2>
       <p>The Front-end SDK and Conversations API let you render the AI agent <b style="color:var(--body)">any way you like</b> — a frosted overlay, an inline carousel, a voice orb, a proactive nudge — over whatever your app already shows. Same engine, knowledge and actions behind every surface; the design is entirely yours. Eight illustrative concepts across industries.</p>
@@ -488,14 +693,17 @@
     </div>
   </div>
 
-  <footer>Ada API Explorer · illustrative reference &amp; walkthrough · method inventory from docs.ada.cx</footer>
+  <footer>Ada API Explorer · illustrative reference &amp; walkthrough · method inventory from docs.ada.cx · handoff coverage from AI Agent Integration Readiness (Sep 2026)</footer>
 </div>
 
 <script>
+function esc(s){return (s||'').replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');}
+
 /* ---------- reference data ---------- */
 var DATA=[
   {cls:'sdk',ic:'💬',nm:'Front-end Chat SDK',kind:'embed2.js · client-side',
    lead:"Embed Ada's chat on any web page or app and control it entirely from the browser — no backend required.",
+   link:{label:'Explore 8 front-end Design Options →',view:'des'},
    groups:[
      {gl:'Lifecycle',items:[['start()','Initialise Embed2 on your page.'],['stop()','Remove the chat widget.'],['toggle()','Open or close the chat drawer.'],['reset()','Start a fresh chatter session.'],['isOpen()','Is the drawer currently open?'],['getInfo()','Bot + drawer state metadata.']]},
      {gl:'Context',items:[['setMetaFields()','Attach chatter context (name, plan, IDs) the agent can use.'],['setSensitiveMetaFields()','Encrypted, temporary context — kept out of the LLM.'],['getMetaFields()','Read the currently-set context.'],['setLanguage()','Switch chat language programmatically.']]},
@@ -525,20 +733,72 @@ var DATA=[
      {gl:'Conversation events',items:[['v1.conversation.created','A new conversation started.'],['v1.conversation.message','A new message (AI, agent or user) — how you get replies.'],['v1.conversation.ended','The conversation closed.']]},
      {gl:'End-user events',items:[['end_user.created','A new end-user profile was created.'],['end_user.updated','An end-user profile changed.']]},
      {gl:'Delivery',items:[['Svix','Signed, retried delivery — verify the signature, respond 2xx.'],['use it for','Rendering replies in a custom UI, syncing transcripts, triggering downstream systems.']]}
+   ]},
+  {cls:'snap',ic:'🗄️',nm:'Snapshots API',kind:'export / import · config',
+   lead:"Back up, restore, migrate or clone an agent's entire configuration as a single portable snapshot.",
+   groups:[
+     {gl:'Operations',items:[['export','Download the agent config as a .tar.gz snapshot.'],['import','Apply a snapshot to an agent (create or update).'],['validate','Dry-run a snapshot before applying — catch conflicts first.']]},
+     {gl:'What\'s inside',items:[['16 config sections','Playbooks, actions, knowledge, variables, guidance, channels & more.'],['selective include','Choose sections — listed = full replace, dependencies = add-only.'],['portable .tar.gz','One file, moved between agents or instances.']]},
+     {gl:'Use it for',items:[['backup / restore','A point-in-time safety net before big changes.'],['clone','Stand up a new agent from a proven one.'],['promote','Move configuration from dev to prod.']]}
+   ]},
+  {cls:'dx',ic:'📊',nm:'Data Export API',kind:'analytics · warehouse',
+   lead:"Stream conversation- and message-level records to your data warehouse for analytics and reporting.",
+   groups:[
+     {gl:'Delivery',items:[['scheduled export','Records pushed on a schedule.'],['warehouse targets','BigQuery, Snowflake, Redshift, S3, GCS…'],['add-on','Enabled per account.']]},
+     {gl:'What you get',items:[['conversation records','Metadata, resolution, CSAT, handoff, topics.'],['message records','Every turn — user, AI & agent.'],['join keys','external_id / conversation id to your own data.']]}
+   ]},
+  {cls:'mcp',ic:'🧩',nm:'MCP',kind:'Model Context Protocol',
+   lead:"Give the AI agent live tools and data through MCP — connect external MCP servers, or manage Ada from your own MCP client.",
+   groups:[
+     {gl:'Agent as MCP client',items:[['connect server','Point the agent at an external MCP server.'],['tools','Agent calls MCP tools at runtime (start disabled).'],['limits','30s / 60KB per tool call; output-variables only.']]},
+     {gl:'Ada as MCP server',items:[['dashboard MCP','Manage & analyse the agent from any MCP client (e.g. Claude).'],['read + edit','Config, conversations, metrics & change sets.']]},
+     {gl:'Notes',items:[['channels','Tool sign-in not available on voice / email.'],['governance','Tools reviewed before enablement.']]}
+   ]},
+  {cls:'cli',ic:'⌨️',nm:'Ada CLI',kind:'adacli · terminal',
+   lead:"Manage agents from the terminal — scriptable access to knowledge, playbooks, conversations, analytics and snapshots.",
+   groups:[
+     {gl:'Manage',items:[['knowledge','List, create & update articles.'],['playbooks','v1 markdown & v2 structured steps.'],['responses / actions','Dialogs & generative actions.'],['channels / variables','Config primitives.']]},
+     {gl:'Observe',items:[['conversations','Search, view logs & AI reasoning.'],['analytics','Metrics & insights.'],['coaching / topics','Behaviour & clustering.']]},
+     {gl:'Operate',items:[['snapshots','Export / import config.'],['api-keys / team','Access management.']]}
    ]}
 ];
 
+/* families that appear as tiles on Overview (handoff has no method card — it has the matrix) */
+var TILES=[
+  {cls:'sdk',ic:'💬',nm:'Front-end Chat SDK',kd:'embed2.js',go:'fam-sdk',p:'Embed &amp; control chat in the browser — build any custom front-end.',acc:'var(--sdk)'},
+  {cls:'conv',ic:'🔌',nm:'Conversations API',kd:'/v2 · server-side',go:'fam-conv',p:'Drive conversations from your server; own the UI, replies by webhook.',acc:'var(--conv)'},
+  {cls:'eu',ic:'👤',nm:'End Users API',kd:'context',go:'fam-eu',p:'Tell Ada who the customer is before they type.',acc:'var(--eu)'},
+  {cls:'wh',ic:'📡',nm:'Webhooks & Events',kd:'Svix',go:'fam-wh',p:'Receive replies and stay in sync, in real time.',acc:'var(--wh)'},
+  {cls:'snap',ic:'🗄️',nm:'Snapshots API',kd:'export / import',go:'fam-snap',p:'Back up, restore &amp; clone an agent\'s entire configuration.',acc:'#f0abfc'},
+  {cls:'hoff',ic:'🤝',nm:'Handoff',kd:'chat · messaging · voice',go:'fam-handoff',p:'Escalate to a human on any platform, with full context.',acc:'#fb7185'},
+  {cls:'dx',ic:'📊',nm:'Data Export API',kd:'warehouse',go:'fam-dx',p:'Stream conversation &amp; message data to your warehouse.',acc:'#38bdf8'},
+  {cls:'mcp',ic:'🧩',nm:'MCP',kd:'Model Context Protocol',go:'fam-mcp',p:'Give the agent live tools via Model Context Protocol.',acc:'#c084fc'},
+  {cls:'cli',ic:'⌨️',nm:'Ada CLI',kd:'adacli',go:'fam-cli',p:'Manage agents from the terminal — knowledge, playbooks, snapshots.',acc:'#5eead4'}
+];
+
+/* ---------- render Overview tiles ---------- */
+var tilesEl=document.getElementById('tiles');
+TILES.forEach(function(t){
+  var d=document.createElement('div'); d.className='tile'; d.style.setProperty('--acc',t.acc);
+  d.onclick=function(){gotoFamily(t.go);};
+  d.innerHTML='<div class="th"><div class="ic">'+t.ic+'</div><div><div class="nm">'+t.nm+'</div><div class="kd">'+t.kd+'</div></div></div>'+
+    '<p>'+t.p+'</p><div class="go">View details →</div>';
+  tilesEl.appendChild(d);
+});
+
+/* ---------- render Details cards ---------- */
 var cardsEl=document.getElementById('cards');
 DATA.forEach(function(api,ai){
-  var c=document.createElement('div'); c.className='card '+api.cls;
+  var c=document.createElement('div'); c.className='card '+api.cls; c.id='fam-'+api.cls;
   var g=api.groups.map(function(gr){
     return '<div class="grp"><div class="gl">'+gr.gl+'</div><div class="pills">'+
-      gr.items.map(function(it,ii){return '<span class="pill" data-d="'+esc(it[1])+'" data-n="'+esc(it[0])+'">'+esc(it[0])+'</span>';}).join('')+
+      gr.items.map(function(it){return '<span class="pill" data-d="'+esc(it[1])+'" data-n="'+esc(it[0])+'">'+esc(it[0])+'</span>';}).join('')+
       '</div></div>';
   }).join('');
+  var linkHtml = api.link ? '<button class="dolink" data-view="'+api.link.view+'">'+api.link.label+'</button>' : '';
   c.innerHTML='<div class="card-h"><div class="card-ic">'+api.ic+'</div><div><div class="nm">'+api.nm+'</div><div class="kind">'+api.kind+'</div></div></div>'+
     '<div class="lead">'+api.lead+'</div>'+g+
-    '<div class="detail empty" id="det'+ai+'">Tap any method to see what it does.</div>';
+    '<div class="detail empty" id="det'+ai+'">Tap any method to see what it does.</div>'+linkHtml;
   cardsEl.appendChild(c);
   c.querySelectorAll('.pill').forEach(function(p){
     p.addEventListener('click',function(){
@@ -547,77 +807,220 @@ DATA.forEach(function(api,ai){
       det.innerHTML='<span class="dn">'+p.dataset.n+'</span> — '+p.dataset.d;
     });
   });
+  var lk=c.querySelector('.dolink'); if(lk){lk.addEventListener('click',function(){show(this.dataset.view);});}
 });
-function esc(s){return (s||'').replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');}
+
+/* ---------- handoff matrix ---------- */
+function iconUrl(slug){return 'https://cdn.simpleicons.org/'+slug+'/c9cede';}
+function chipHtml(o,voice){
+  var tags = voice ? ('<span class="tag">'+o.t+'</span>'+(o.c?'<span class="tag">ctx</span>':'')) : '';
+  return '<span class="lg">'+
+    '<img src="'+iconUrl(o.slug)+'" alt="" loading="lazy" onerror="this.style.display=\'none\';this.nextElementSibling.style.display=\'flex\'">'+
+    '<span class="mg">'+o.mg+'</span>'+
+    '<span>'+o.n+'</span>'+tags+
+    '<span class="rd '+o.r+'"></span></span>';
+}
+var CHAT_HOFF=[
+  {n:'Salesforce',slug:'salesforce',mg:'SF',r:'ga'},
+  {n:'Zendesk',slug:'zendesk',mg:'ZD',r:'ga'},
+  {n:'Genesys',slug:'genesys',mg:'Ge',r:'ga'},
+  {n:'Amazon Connect',slug:'amazonwebservices',mg:'AC',r:'ga'},
+  {n:'Dixa',slug:'dixa',mg:'Dx',r:'ga'},
+  {n:'Freshworks',slug:'freshworks',mg:'Fw',r:'ga'},
+  {n:'Kustomer',slug:'kustomer',mg:'Ku',r:'ga'},
+  {n:'Gladly',slug:'gladly',mg:'Gl',r:'ga'},
+  {n:'Help Scout',slug:'helpscout',mg:'HS',r:'ga'},
+  {n:'Twilio Flex',slug:'twilio',mg:'Tw',r:'ga'},
+  {n:'NICE CXone',slug:'nice',mg:'Ni',r:'ga'},
+  {n:'ServiceNow',slug:'servicenow',mg:'SN',r:'ga'},
+  {n:'MS Dynamics',slug:'dynamics365',mg:'Dy',r:'ga'},
+  {n:'Khoros',slug:'khoros',mg:'Kh',r:'lim'},
+  {n:'Gorgias',slug:'gorgias',mg:'Go',r:'lim'},
+  {n:'Intercom',slug:'intercom',mg:'Ic',r:'rm'},
+  {n:'Oracle',slug:'oracle',mg:'Or',r:'rm'}
+];
+var VOICE_HOFF=[
+  {n:'Amazon Connect',slug:'amazonwebservices',mg:'AC',r:'ga',t:'SIP',c:true},
+  {n:'Genesys Cloud',slug:'genesys',mg:'Ge',r:'ga',t:'SIP',c:true},
+  {n:'Zendesk Talk',slug:'zendesk',mg:'ZD',r:'ga',t:'PSTN',c:true},
+  {n:'Aircall',slug:'aircall',mg:'Ai',r:'ga',t:'SIP',c:true},
+  {n:'Salesforce',slug:'salesforce',mg:'SF',r:'ga',t:'SIP',c:true},
+  {n:'Dixa',slug:'dixa',mg:'Dx',r:'ga',t:'PSTN',c:false},
+  {n:'Twilio Flex',slug:'twilio',mg:'Tw',r:'ga',t:'SIP',c:false},
+  {n:'Gladly',slug:'gladly',mg:'Gl',r:'ga',t:'PSTN',c:false},
+  {n:'Cisco CUBE',slug:'cisco',mg:'Ci',r:'ga',t:'SIP',c:false},
+  {n:'Five9',slug:'five9',mg:'F9',r:'ga',t:'SIP',c:false},
+  {n:'NICE CXone',slug:'nice',mg:'Ni',r:'ga',t:'SIP',c:false},
+  {n:'Vonage',slug:'vonage',mg:'Vo',r:'ga',t:'SIP',c:false}
+];
+document.getElementById('chatWall').innerHTML=CHAT_HOFF.map(function(o){return chipHtml(o,false);}).join('');
+document.getElementById('voiceWall').innerHTML=VOICE_HOFF.map(function(o){return chipHtml(o,true);}).join('');
 
 /* ---------- view toggle ---------- */
 function show(v){
-  document.getElementById('viewRef').classList.toggle('on',v==='ref');
-  document.getElementById('viewScn').classList.toggle('on',v==='scn');
-  document.getElementById('viewDes').classList.toggle('on',v==='des');
-  document.getElementById('tabRef').classList.toggle('on',v==='ref');
-  document.getElementById('tabScn').classList.toggle('on',v==='scn');
-  document.getElementById('tabDes').classList.toggle('on',v==='des');
+  ['ovr','det','exm','des'].forEach(function(x){
+    var el=document.getElementById('view'+x.charAt(0).toUpperCase()+x.slice(1));
+    if(el)el.classList.toggle('on',v===x);
+  });
+  document.getElementById('tabOvr').classList.toggle('on',v==='ovr');
+  document.getElementById('tabDet').classList.toggle('on',v==='det');
+  document.getElementById('tabExm').classList.toggle('on',v==='exm');
+  window.scrollTo({top:0,behavior:'instant' in document.documentElement.style?'instant':'auto'});
+}
+function gotoFamily(id){
+  show('det');
+  setTimeout(function(){
+    var el=document.getElementById(id);
+    if(el)el.scrollIntoView({behavior:'smooth',block:'start'});
+  },70);
 }
 
-/* ---------- scenario player ---------- */
-var STEPS=[
-  {st:'Step 1 · Identify',pk:'pkEU',ac:'acEU',
-   tx:"Before the chat even opens, <b>Your App</b> calls the <b>End Users API</b> to tell Ada who this is — standard context (name, plan, last order) plus <b>sensitive</b> fields that are encrypted and never reach the model.",
-   on:['ctx']},
-  {st:'Step 2 · Ask',pk:'pkReq',ac:'acConv',
-   tx:"The customer types in your UI. Your server posts it to the <b>Conversations API</b> — <code>POST …/messages</code> — into a conversation you created for this channel.",
-   on:['ctx','mUser']},
-  {st:'Step 3 · Reason',pk:null,ac:null,agent:true,
-   tx:"Ada's AI Agent runs its playbooks and knowledge against the message <b>and</b> the context you passed — so it already knows Alex is Premium and which order to look up.",
-   on:['ctx','mUser','typing']},
-  {st:'Step 4 · Reply via webhook',pk:'pkWH',ac:'acWH',agentDone:true,
-   tx:"Ada pushes the reply to <b>your webhook</b> as a <code>v1.conversation.message</code> event (signed, via Svix). Your UI renders it — personalised, because of the context from step 1.",
-   on:['ctx','mUser','mAI']}
+/* ================= EXAMPLES ================= */
+/* ---- Conversations module ---- */
+var CONV_STEPS=[
+  {st:'Step 1 · Create the channel',pk:'pkChan',ac:'acChan',on:[],
+   tx:"One-time setup: your server creates a <b>custom channel</b> — the pipe between your app and Ada. Every conversation for this surface runs through it."},
+  {st:'Step 2 · Identify the customer',pk:'pkEU',ac:'acEU',on:['ctx'],
+   tx:"Before the chat opens, tell Ada who this is via the <b>End Users API</b> — standard context (name, plan, last order) plus <b>sensitive</b> fields that are encrypted and never reach the model."},
+  {st:'Step 3 · Ask',pk:'pkReq',ac:'acConv',on:['ctx','mUser'],
+   tx:"The customer types in <b>your</b> UI. Your server posts it to the conversation — <code>POST …/messages</code> — with the end-user attached."},
+  {st:'Step 4 · Reason',pk:null,ac:null,agent:true,on:['ctx','mUser','typing'],
+   tx:"Ada's AI Agent runs its <b>playbooks and knowledge</b> against the message and the context you passed — it already knows Alex is Premium and which order to look up."},
+  {st:'Step 5 · Act on your systems',pk:'pkAct',ac:'acAct',agent:true,on:['ctx','mUser','typing'],
+   tx:"Mid-conversation, the agent calls <b>your</b> business API as an <b>Action</b> — fetching live order status from Acme, right inside the turn."},
+  {st:'Step 6 · Reply via webhook',pk:'pkWH',ac:'acWH',agentDone:true,on:['ctx','mUser','mAI'],
+   tx:"Ada pushes the reply to <b>your webhook</b> as a <code>v1.conversation.message</code> event (signed, via Svix). Your UI renders it — personalised, because of everything above."}
 ];
-var cur=0, playing=false, timer=null;
-var dotsEl=document.getElementById('dots');
-STEPS.forEach(function(_,i){var d=document.createElement('i');dotsEl.appendChild(d);});
-function applyStep(i){
-  cur=Math.max(0,Math.min(STEPS.length-1,i));
-  // reset all
+function applyConv(cur){
   ['ctx','mUser','mAI','typing'].forEach(function(id){document.getElementById(id).classList.remove('on');});
-  ['pkEU','pkReq','pkWH'].forEach(function(id){document.getElementById(id).classList.remove('on');});
-  ['acEU','acConv','acWH'].forEach(function(id){document.getElementById(id).classList.remove('on');});
+  ['pkChan','pkEU','pkReq','pkAct','pkWH'].forEach(function(id){document.getElementById(id).classList.remove('on');});
+  ['acChan','acEU','acConv','acAct','acWH'].forEach(function(id){document.getElementById(id).classList.remove('on');});
   var ag=document.getElementById('agent'); ag.classList.remove('on','done');
-  // cumulative reveal of API cards + app elements up to current step
   for(var k=0;k<=cur;k++){
-    var s=STEPS[k];
+    var s=CONV_STEPS[k];
     (s.on||[]).forEach(function(id){document.getElementById(id).classList.add('on');});
     if(s.ac)document.getElementById(s.ac).classList.add('on');
-    if(s.agent){ag.classList.add('on');}
+    if(s.agent)ag.classList.add('on');
     if(s.agentDone){ag.classList.add('on','done');document.getElementById('agentTxt').textContent='Order status retrieved · reply ready';}
   }
-  // current packet pulse
-  var s=STEPS[cur]; if(s.pk)document.getElementById(s.pk).classList.add('on');
-  // typing only lit exactly on step 3
-  document.getElementById('typing').classList.toggle('on',!!STEPS[cur].agent && !STEPS[cur].agentDone);
-  document.getElementById('mAI').classList.toggle('on',cur>=3);
-  // narration
+  if(document.getElementById('agent').classList.contains('on') && !document.getElementById('agent').classList.contains('done'))
+    document.getElementById('agentTxt').textContent='AI Agent reasoning · running playbook';
+  var s=CONV_STEPS[cur]; if(s.pk)document.getElementById(s.pk).classList.add('on');
+  document.getElementById('typing').classList.toggle('on', !!s.agent && !s.agentDone);
+}
+
+/* ---- Handoff module ---- */
+var DESTS={
+  salesforce:{name:'Salesforce',slug:'salesforce',mg:'SF',chat:'MIAW',voice:'Service Cloud Voice'},
+  genesys:{name:'Genesys Cloud',slug:'genesys',mg:'Ge',chat:'Web messaging',voice:'2-way SIP'},
+  zendesk:{name:'Zendesk',slug:'zendesk',mg:'ZD',chat:'Agent Workspace',voice:'Zendesk Talk'},
+  amazon:{name:'Amazon Connect',slug:'amazonwebservices',mg:'AC',chat:'Connect Chat',voice:'2-way SIP'}
+};
+var hoffChan='chat', hoffDest='salesforce';
+var HOFF_STEPS=[
+  {st:'Step 1 · Escalate',pk:'pkEsc',
+   tx:function(){return hoffChan==='voice'
+     ? "The caller asks for a person — or a playbook decides it's time. Ada raises a <b>handoff</b> instead of pushing further."
+     : "The customer needs a human — they ask, or a playbook rule fires. Ada raises a <b>handoff</b> rather than looping.";}},
+  {st:'Step 2 · Package the context',pk:'pkPkg',
+   tx:function(){return "Ada assembles the <b>full transcript</b>, the detected intent, the metavariables it gathered and a <b>predicted CSAT</b> into a single handoff payload — so nothing is lost.";}},
+  {st:'Step 3 · Route to the platform',pk:'pkRte',
+   tx:function(){return hoffChan==='voice'
+     ? "It warm-transfers the live call over <b>2-way SIP</b> (or PSTN) to <b>"+DESTS[hoffDest].name+"</b> — carrying the conversation context into the call, not just the phone line."
+     : "It routes the conversation through Ada's <b>CPaaS / switchboard</b> layer into <b>"+DESTS[hoffDest].name+"</b> — the transcript and context ride along.";}},
+  {st:'Step 4 · Human picks up — with everything',pk:null,
+   tx:function(){return "A human agent opens the conversation in <b>"+DESTS[hoffDest].name+"</b> with the <b>entire</b> history and context already in front of them. The customer never repeats themselves.";}},
+  {st:'Step 5 · Stay in sync',pk:'pkSnc',
+   tx:function(){return "After handoff, the conversation stays in <b>sync</b> and the outcome writes back where supported (e.g. Zendesk) — so your records and Ada's reporting stay whole.";}}
+];
+function renderDestChips(){
+  var el=document.getElementById('destChips'); el.innerHTML='';
+  Object.keys(DESTS).forEach(function(key){
+    var d=DESTS[key];
+    var b=document.createElement('button'); b.className='chipbtn'+(key===hoffDest?' on':'');
+    b.onclick=function(){hoffDest=key; renderDestChips(); paintDesk(); applyActive(cur);};
+    b.innerHTML='<img src="'+iconUrl(d.slug)+'" alt="" onerror="this.style.display=\'none\';this.nextElementSibling.style.display=\'flex\'"><span class="mg">'+d.mg+'</span>'+d.name;
+    el.appendChild(b);
+  });
+}
+function paintDesk(){
+  var d=DESTS[hoffDest];
+  var img=document.getElementById('hDeskLogo'); img.style.display=''; img.src=iconUrl(d.slug);
+  document.getElementById('hDeskMg').style.display='none';
+  document.getElementById('hDeskName').textContent=d.name;
+  document.getElementById('hDeskMech').textContent=(hoffChan==='voice'?d.voice:d.chat);
+}
+function setHoffChan(ch){
+  hoffChan=ch;
+  document.getElementById('hcChat').classList.toggle('on',ch==='chat');
+  document.getElementById('hcVoice').classList.toggle('on',ch==='voice');
+  document.getElementById('hChat').style.display=(ch==='chat'?'':'none');
+  document.getElementById('hVoice').style.display=(ch==='voice'?'flex':'none');
+  document.getElementById('hCustSub').textContent=(ch==='voice'?'live call':'web chat');
+  document.getElementById('rteLbl').textContent=(ch==='voice'?'2-way SIP':'SunCo');
+  document.getElementById('pkRte').querySelector('.dir').textContent=(ch==='voice'?'📞':'→');
+  paintDesk(); applyActive(cur);
+}
+function applyHoff(cur){
+  ['pkEsc','pkPkg','pkRte','pkSnc'].forEach(function(id){document.getElementById(id).classList.remove('on');});
+  document.getElementById('hA2').classList.remove('on');
+  document.getElementById('hDesk').classList.remove('on');
+  document.getElementById('hAgt').classList.remove('on');
+  document.getElementById('hCtx').classList.remove('on');
+  document.getElementById('hTrans').classList.remove('on');
+  for(var k=0;k<=cur;k++){
+    if(k>=0)document.getElementById('hA2').classList.add('on');
+    if(k>=2)document.getElementById('hDesk').classList.add('on');
+    if(k>=3){document.getElementById('hAgt').classList.add('on');document.getElementById('hCtx').classList.add('on');document.getElementById('hTrans').classList.add('on');}
+  }
+  var s=HOFF_STEPS[cur]; if(s.pk)document.getElementById(s.pk).classList.add('on');
+}
+
+/* ---- shared player ---- */
+var MOD={
+  conv:{steps:CONV_STEPS,apply:applyConv,lead:'One question — <b style="color:var(--ink)">"Where\'s my order?"</b> — answered inside <b style="color:var(--ink)">your own app UI</b>. Six steps, from channel to reply.'},
+  hoff:{steps:HOFF_STEPS,apply:applyHoff,lead:'A conversation that needs a person — handed to a live agent on <b style="color:var(--ink)">your platform</b>, with the full transcript &amp; context. Pick a channel and destination.'}
+};
+var active='conv', cur=0, playing=false, timer=null;
+var dotsEl=document.getElementById('dots');
+function buildDots(){
+  dotsEl.innerHTML='';
+  MOD[active].steps.forEach(function(){var d=document.createElement('i');dotsEl.appendChild(d);});
+}
+function applyActive(i){
+  var steps=MOD[active].steps;
+  cur=Math.max(0,Math.min(steps.length-1,i));
+  MOD[active].apply(cur);
+  var s=steps[cur];
   document.getElementById('narrStep').textContent=s.st;
-  document.getElementById('narrText').innerHTML=s.tx;
-  // dots + buttons
+  document.getElementById('narrText').innerHTML=(typeof s.tx==='function'?s.tx():s.tx);
   dotsEl.querySelectorAll('i').forEach(function(d,di){d.classList.toggle('on',di<=cur);});
   document.getElementById('prev').disabled=cur===0;
-  document.getElementById('next').disabled=cur===STEPS.length-1;
+  document.getElementById('next').disabled=cur===steps.length-1;
 }
-function step(d){stopPlay();applyStep(cur+d);}
+function selectMod(m){
+  stopPlay(); active=m; cur=0;
+  document.getElementById('exConv').classList.toggle('on',m==='conv');
+  document.getElementById('exHoff').classList.toggle('on',m==='hoff');
+  document.getElementById('modConv').classList.toggle('on',m==='conv');
+  document.getElementById('modHoff').classList.toggle('on',m==='hoff');
+  document.getElementById('exLead').innerHTML=MOD[m].lead;
+  buildDots(); applyActive(0);
+}
+function step(d){stopPlay();applyActive(cur+d);}
 function playAll(){
   if(playing){stopPlay();return;}
   playing=true;document.getElementById('play').textContent='❚❚ Pause';
-  applyStep(0);
+  applyActive(0);
   timer=setInterval(function(){
-    if(cur>=STEPS.length-1){stopPlay();return;}
-    applyStep(cur+1);
+    if(cur>=MOD[active].steps.length-1){stopPlay();return;}
+    applyActive(cur+1);
   },2600);
 }
 function stopPlay(){playing=false;document.getElementById('play').textContent='▶ Play';if(timer)clearInterval(timer);}
-applyStep(0);
+
+/* init */
+renderDestChips(); paintDesk(); selectMod('conv');
 </script>
 </body>
 </html>
