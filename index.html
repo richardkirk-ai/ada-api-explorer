@@ -43,10 +43,10 @@
 
   /* ===== Overview tiles ===== */
   .ov-lead{color:var(--muted);font-size:14px;line-height:1.5;max-width:720px;margin:-8px 0 20px}
-  .ov-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
+  .ov-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:24px}
   @media(max-width:940px){.ov-grid{grid-template-columns:1fr 1fr}}
   @media(max-width:600px){.ov-grid{grid-template-columns:1fr}}
-  .tile{background:var(--panel);border:1px solid var(--stroke);border-radius:16px;padding:18px;cursor:pointer;transition:.18s;position:relative;overflow:hidden;text-align:left}
+  .tile{background:var(--panel);border:1px solid var(--stroke);border-radius:16px;padding:24px 22px 20px;cursor:pointer;transition:.18s;position:relative;overflow:hidden;text-align:left;min-height:190px;display:flex;flex-direction:column}
   .tile::before{content:"";position:absolute;left:0;top:0;bottom:0;width:3px;background:var(--acc)}
   .tile:hover{border-color:var(--acc);transform:translateY(-3px);box-shadow:0 16px 34px rgba(0,0,0,.38)}
   .tile .th{display:flex;align-items:center;gap:11px;margin-bottom:10px}
@@ -54,7 +54,7 @@
   .tile .nm{font-size:15px;font-weight:700}
   .tile .kd{font-family:'JetBrains Mono',monospace;font-size:8.5px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--acc);margin-top:2px}
   .tile p{font-size:12.5px;color:var(--muted);line-height:1.5}
-  .tile .go{margin-top:11px;font-size:11.5px;font-weight:600;color:var(--acc);opacity:.92}
+  .tile .go{margin-top:auto;padding-top:14px;font-size:11.5px;font-weight:600;color:var(--acc);opacity:.92}
 
   /* ===== reference cards ===== */
   .cards{display:grid;grid-template-columns:1fr 1fr;gap:18px}
@@ -160,11 +160,12 @@
   .typing span:nth-child(2){animation-delay:.2s}.typing span:nth-child(3){animation-delay:.4s}
   @keyframes blink{0%,60%,100%{opacity:.3}30%{opacity:1}}
 
-  .voicecall{flex:1;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:14px;padding:22px;background:var(--panel2);border:1px solid var(--stroke);border-radius:12px}
-  .voicecall .orb{width:76px;height:76px;border-radius:50%;background:radial-gradient(circle at 40% 35%,#fecdd3,#fb7185 58%,#9f1239);box-shadow:0 0 34px rgba(251,113,133,.5)}
-  .voicecall .cap{text-align:center;font-size:13px;color:#ffd7dd;font-weight:600;max-width:200px;line-height:1.4}
-  .voicecall .wave{display:flex;gap:4px;align-items:center;height:20px}
-  .voicecall .wave i{width:4px;border-radius:2px;background:#fecdd3;display:block}
+  .voicecall{flex:1;display:flex;flex-direction:column;align-items:center;gap:12px;padding:16px 14px;background:var(--panel2);border:1px solid var(--stroke);border-radius:12px;overflow-y:auto}
+  .voicecall .orb{width:54px;height:54px;border-radius:50%;background:radial-gradient(circle at 40% 35%,#fecdd3,#fb7185 58%,#9f1239);box-shadow:0 0 30px rgba(251,113,133,.5);margin-top:6px;flex:0 0 auto}
+  .vlabel{font-family:'JetBrains Mono',monospace;font-size:10px;color:#ff9aa8;font-weight:700}
+  .vtrans{width:100%;display:flex;flex-direction:column;gap:11px;margin-top:2px}
+  .vturn{font-size:12px;line-height:1.45;color:var(--body);background:var(--panel3);border:1px solid var(--stroke);border-radius:10px;padding:9px 11px}
+  .vturn.hum{opacity:0;transition:.45s;border-color:rgba(245,166,35,.4)} .vturn.hum.on{opacity:1}
 
   .wire{position:relative;display:flex;flex-direction:column;align-items:center;justify-content:center}
   .wire .line{position:absolute;top:20px;bottom:20px;width:2px;background:repeating-linear-gradient(180deg,var(--stroke2) 0 6px,transparent 6px 12px)}
@@ -209,6 +210,17 @@
   .transcript{background:var(--panel);border:1px solid var(--stroke);border-radius:10px;padding:11px;font-size:10.5px;color:var(--muted);line-height:1.6;opacity:0;transition:.4s;max-height:150px;overflow:auto}
   .transcript.on{opacity:1}
   .transcript b{color:var(--body)}
+  .tc{font-weight:700} .tc.cust{color:#7fe4f5} .tc.ai{color:var(--ada2)} .tc.hum{color:var(--wh)}
+  .routerow{font-size:11.5px;color:var(--body);background:rgba(245,166,35,.08);border:1px solid rgba(245,166,35,.3);border-radius:9px;padding:8px 11px;opacity:0;transition:.4s}
+  .routerow.on{opacity:1}
+  .routerow .rlbl{font-family:'JetBrains Mono',monospace;font-size:8.5px;letter-spacing:.08em;text-transform:uppercase;color:var(--muted);margin-right:6px}
+  .routerow b{color:var(--wh)}
+  .spk{font-family:'JetBrains Mono',monospace;font-size:8px;font-weight:700;letter-spacing:.09em;text-transform:uppercase;margin-bottom:3px;display:block}
+  .spk.r{text-align:right}
+  .spk.cust{color:#22d3ee} .spk.ai{color:var(--ada2)} .spk.hum{color:var(--wh)}
+  .hturn{display:flex;flex-direction:column;opacity:0;transition:.45s}
+  .hturn.on{opacity:1}
+  .vturn .spk{margin-bottom:4px}
 
   .narr{margin-top:16px;background:var(--panel);border:1px solid var(--stroke);border-left:3px solid var(--ada);border-radius:12px;padding:14px 18px}
   .narr .st{font-family:'JetBrains Mono',monospace;font-size:10px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--ada2)}
@@ -432,15 +444,24 @@
           <div id="hChat" class="appui">
             <div class="bar rose">Support <span class="d">acme.com</span></div>
             <div class="body">
-              <div class="msg u rose on" id="hU1">I've been charged twice and I need this sorted by a person, please.</div>
-              <div class="msg a on" id="hA1">Completely understand — I'm connecting you to a specialist now, with everything you've told me.</div>
-              <div class="msg a" id="hA2" style="background:rgba(251,113,133,.14);color:#ffd7dd;font-size:11.5px">↗ Handing off to a human agent…</div>
+              <div class="spk cust r">Customer</div>
+              <div class="msg u rose on">I've been charged twice and I need this sorted by a person, please.</div>
+              <div class="spk ai">AI agent</div>
+              <div class="msg a on">Completely understand — I'm connecting you to a specialist now, with everything you've told me.</div>
+              <div class="hturn" id="hHumTurn">
+                <div class="spk hum">Human agent</div>
+                <div class="msg a on" style="border:1px solid rgba(245,166,35,.4)">Hi Alex, Maria here from the billing team. I can see the duplicate £129 charge — I'm refunding it now, it'll clear in 3–5 days.</div>
+              </div>
             </div>
           </div>
           <div id="hVoice" class="voicecall" style="display:none">
             <div class="orb"></div>
-            <div class="wave"><i style="height:8px"></i><i style="height:15px"></i><i style="height:20px"></i><i style="height:12px"></i><i style="height:18px"></i><i style="height:9px"></i></div>
-            <div class="cap" id="hVcap">Live call · caller asks to speak with an agent</div>
+            <div class="vlabel">● Live call · 02:14</div>
+            <div class="vtrans">
+              <div class="vturn"><span class="spk cust">Customer</span>I've been charged twice — can I speak to a person, please?</div>
+              <div class="vturn"><span class="spk ai">AI agent</span>Of course — I'm connecting you to a specialist now, with everything you've told me.</div>
+              <div class="vturn hum" id="hVhum"><span class="spk hum">Human agent</span>Hi Alex, Maria here from billing — I can see the duplicate charge and I'm refunding it now.</div>
+            </div>
           </div>
         </div>
 
@@ -448,9 +469,9 @@
           <div class="line"></div>
           <div class="packet esc" id="pkEsc"><div class="dir">⚑</div>escalate</div>
           <div class="wsp"></div>
-          <div class="packet pkg" id="pkPkg"><div class="dir">📦</div>context</div>
+          <div class="packet pkg" id="pkPkg"><div class="dir">📦</div>collect</div>
           <div class="wsp"></div>
-          <div class="packet rte" id="pkRte"><div class="dir">→</div><span id="rteLbl">SunCo</span></div>
+          <div class="packet rte" id="pkRte"><div class="dir">→</div><span id="rteLbl">API</span></div>
           <div class="wsp"></div>
           <div class="packet snc" id="pkSnc"><div class="dir">⟲</div>sync</div>
         </div>
@@ -460,20 +481,21 @@
           <div class="desk" id="hDesk">
             <div class="dbar"><img id="hDeskLogo" src="" alt="" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'"><span class="mg" id="hDeskMg">SF</span><span id="hDeskName">Salesforce</span><span class="st" id="hDeskMech">MIAW</span></div>
             <div class="dbody">
-              <div class="agtrow" id="hAgt"><span class="av">M</span> <span><b style="color:var(--ink)">Maria G.</b> · Tier-2 Billing · picked up in 0:12</span></div>
               <div class="ctxcard" id="hCtx">
-                <div class="cl">Context delivered with the handoff</div>
+                <div class="cl">Information collected from the conversation</div>
                 <div class="row"><span>Customer</span><b>Alex Rivera · Premium</b></div>
                 <div class="row"><span>Intent</span><b>Duplicate charge</b></div>
                 <div class="row"><span>Order</span><b>#10432 · £129 ×2</b></div>
-                <div class="row"><span>Predicted CSAT</span><b>At-risk ⚠</b></div>
+                <div class="row"><span>Verified</span><b>Yes · via account</b></div>
               </div>
+              <div class="routerow" id="hRoute"><span class="rlbl">Routed to</span> <b>Billing queue → Maria G.</b></div>
+              <div class="agtrow" id="hAgt"><span class="av">M</span> <span><b style="color:var(--ink)">Maria G.</b> · Tier-2 Billing · picked up in 0:12</span></div>
               <div class="transcript" id="hTrans">
-                <b>Full transcript</b><br>
-                <b>Alex:</b> I've been charged twice…<br>
-                <b>Ada:</b> I can see two £129 charges on 24 Sep against order #10432.<br>
-                <b>Alex:</b> I need a person.<br>
-                <b>Ada:</b> Connecting you now — Maria has everything.
+                <b>Synced transcript</b><br>
+                <span class="tc cust">Customer:</span> I've been charged twice…<br>
+                <span class="tc ai">AI agent:</span> I can see two £129 charges on 24 Sep against order #10432.<br>
+                <span class="tc cust">Customer:</span> I need a person.<br>
+                <span class="tc hum">Human agent (Maria):</span> Hi Alex — refunding the duplicate £129 now.
               </div>
             </div>
           </div>
@@ -486,7 +508,7 @@
       <div class="tx" id="narrText">Press <b>▶ Play</b> to watch the sequence.</div>
     </div>
 
-    <div class="contrast">
+    <div class="contrast" id="exContrast">
       <div class="cc drop">
         <h4><span class="dot"></span> Drop-in — Front-end SDK</h4>
         <p>Add <code>embed2.js</code>, call <code>adaEmbed.start()</code> and <code>setMetaFields(…)</code>. Ada renders and runs the whole chat UI, client-side, in minutes. Subscribe to <code>ada:*</code> events to react.</p>
@@ -776,6 +798,10 @@ var TILES=[
   {cls:'cli',ic:'⌨️',nm:'Ada CLI',kd:'adacli',go:'fam-cli',p:'Manage agents from the terminal — knowledge, playbooks, snapshots.',acc:'#5eead4'}
 ];
 
+/* Conversations API leads, then Front-end SDK (swap first two) */
+DATA=[DATA[1],DATA[0]].concat(DATA.slice(2));
+TILES=[TILES[1],TILES[0]].concat(TILES.slice(2));
+
 /* ---------- render Overview tiles ---------- */
 var tilesEl=document.getElementById('tiles');
 TILES.forEach(function(t){
@@ -920,18 +946,16 @@ var hoffChan='chat', hoffDest='salesforce';
 var HOFF_STEPS=[
   {st:'Step 1 · Escalate',pk:'pkEsc',
    tx:function(){return hoffChan==='voice'
-     ? "The caller asks for a person — or a playbook decides it's time. Ada raises a <b>handoff</b> instead of pushing further."
-     : "The customer needs a human — they ask, or a playbook rule fires. Ada raises a <b>handoff</b> rather than looping.";}},
-  {st:'Step 2 · Package the context',pk:'pkPkg',
-   tx:function(){return "Ada assembles the <b>full transcript</b>, the detected intent, the metavariables it gathered and a <b>predicted CSAT</b> into a single handoff payload — so nothing is lost.";}},
-  {st:'Step 3 · Route to the platform',pk:'pkRte',
+     ? "The caller asks for a person — or a playbook decides it's time. The <b>AI agent</b> raises a <b>handoff</b> instead of pushing further."
+     : "The customer asks for a human — or a playbook rule fires. The <b>AI agent</b> raises a <b>handoff</b> rather than looping.";}},
+  {st:'Step 2 · Collect the context',pk:'pkPkg',
+   tx:function(){return "Ada pulls the key facts out of the conversation — <b>who the customer is, their intent, the order in question and whether they're verified</b> — into a structured handoff payload.";}},
+  {st:'Step 3 · Route to a queue &amp; agent',pk:'pkRte',
    tx:function(){return hoffChan==='voice'
-     ? "It warm-transfers the live call over <b>2-way SIP</b> (or PSTN) to <b>"+DESTS[hoffDest].name+"</b> — carrying the conversation context into the call, not just the phone line."
-     : "It routes the conversation through Ada's <b>CPaaS / switchboard</b> layer into <b>"+DESTS[hoffDest].name+"</b> — the transcript and context ride along.";}},
-  {st:'Step 4 · Human picks up — with everything',pk:null,
-   tx:function(){return "A human agent opens the conversation in <b>"+DESTS[hoffDest].name+"</b> with the <b>entire</b> history and context already in front of them. The customer never repeats themselves.";}},
-  {st:'Step 5 · Stay in sync',pk:'pkSnc',
-   tx:function(){return "After handoff, the conversation stays in <b>sync</b> and the outcome writes back where supported (e.g. Zendesk) — so your records and Ada's reporting stay whole.";}}
+     ? "It warm-transfers the call over <b>2-way SIP</b> to <b>"+DESTS[hoffDest].name+"</b>, into the <b>relevant queue</b> and on to an available agent — here the Billing queue and Maria."
+     : "It routes the conversation via <b>API</b> into <b>"+DESTS[hoffDest].name+"</b>, to the <b>relevant queue</b> and an available agent — here the Billing queue and Maria.";}},
+  {st:'Step 4 · Human takes over',pk:'pkSnc',
+   tx:function(){return "<b>Maria — a human agent — is now speaking to the customer.</b> Her reply syncs straight back into the conversation, reaching the customer in the same "+(hoffChan==='voice'?'call':'chat window')+" — no repeating, no lost context.";}}
 ];
 function renderDestChips(){
   var el=document.getElementById('destChips'); el.innerHTML='';
@@ -957,21 +981,18 @@ function setHoffChan(ch){
   document.getElementById('hChat').style.display=(ch==='chat'?'':'none');
   document.getElementById('hVoice').style.display=(ch==='voice'?'flex':'none');
   document.getElementById('hCustSub').textContent=(ch==='voice'?'live call':'web chat');
-  document.getElementById('rteLbl').textContent=(ch==='voice'?'2-way SIP':'SunCo');
+  document.getElementById('rteLbl').textContent=(ch==='voice'?'2-way SIP':'API');
   document.getElementById('pkRte').querySelector('.dir').textContent=(ch==='voice'?'📞':'→');
   paintDesk(); applyActive(cur);
 }
 function applyHoff(cur){
   ['pkEsc','pkPkg','pkRte','pkSnc'].forEach(function(id){document.getElementById(id).classList.remove('on');});
-  document.getElementById('hA2').classList.remove('on');
-  document.getElementById('hDesk').classList.remove('on');
-  document.getElementById('hAgt').classList.remove('on');
-  document.getElementById('hCtx').classList.remove('on');
-  document.getElementById('hTrans').classList.remove('on');
+  ['hDesk','hCtx','hRoute','hAgt','hTrans','hHumTurn'].forEach(function(id){var e=document.getElementById(id);if(e)e.classList.remove('on');});
+  var vh=document.getElementById('hVhum'); if(vh)vh.classList.remove('on');
   for(var k=0;k<=cur;k++){
-    if(k>=0)document.getElementById('hA2').classList.add('on');
-    if(k>=2)document.getElementById('hDesk').classList.add('on');
-    if(k>=3){document.getElementById('hAgt').classList.add('on');document.getElementById('hCtx').classList.add('on');document.getElementById('hTrans').classList.add('on');}
+    if(k>=1){document.getElementById('hDesk').classList.add('on');document.getElementById('hCtx').classList.add('on');}
+    if(k>=2){document.getElementById('hRoute').classList.add('on');document.getElementById('hAgt').classList.add('on');}
+    if(k>=3){document.getElementById('hTrans').classList.add('on');document.getElementById('hHumTurn').classList.add('on');if(vh)vh.classList.add('on');}
   }
   var s=HOFF_STEPS[cur]; if(s.pk)document.getElementById(s.pk).classList.add('on');
 }
@@ -1005,6 +1026,7 @@ function selectMod(m){
   document.getElementById('modConv').classList.toggle('on',m==='conv');
   document.getElementById('modHoff').classList.toggle('on',m==='hoff');
   document.getElementById('exLead').innerHTML=MOD[m].lead;
+  document.getElementById('exContrast').style.display=(m==='hoff'?'none':'grid');
   buildDots(); applyActive(0);
 }
 function step(d){stopPlay();applyActive(cur+d);}
