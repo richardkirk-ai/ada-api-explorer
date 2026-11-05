@@ -279,6 +279,48 @@
   .do-cap .h{font-size:15px;font-weight:700;line-height:1.25;margin-bottom:6px}
   .do-cap .d{font-size:12px;color:var(--muted);line-height:1.5}
   .do-cap .api{display:inline-block;margin-top:10px;font-family:'JetBrains Mono',monospace;font-size:9.5px;color:var(--body);background:var(--panel);border:1px solid var(--stroke);border-radius:6px;padding:4px 9px}
+
+  /* ===== Deployment & embedding ===== */
+  .emb-head{max-width:760px;margin:2px 0 24px}
+  .emb-head h2{font-size:27px;font-weight:800;letter-spacing:-.02em}
+  .emb-head h2 span{color:var(--ada2)}
+  .emb-head p{color:var(--muted);font-size:14.5px;margin-top:11px;line-height:1.6;max-width:730px}
+  .emb-sec{background:var(--panel);border:1px solid var(--stroke);border-radius:16px;padding:20px 22px;margin-bottom:18px}
+  .emb-h{font-size:16px;font-weight:700;display:flex;align-items:center;gap:10px;margin-bottom:16px}
+  .emb-h .n{width:24px;height:24px;border-radius:7px;background:var(--ada-soft);border:1px solid rgba(124,92,255,.3);color:var(--ada2);display:flex;align-items:center;justify-content:center;font-size:12px;font-weight:800;font-family:'JetBrains Mono',monospace;flex:0 0 auto}
+  .emb-grid{display:grid;grid-template-columns:1fr 1fr;gap:20px;align-items:start}
+  @media(max-width:860px){.emb-grid{grid-template-columns:1fr}}
+  .emb-copy p{font-size:13.5px;color:var(--body);line-height:1.6}
+  .emb-copy b{color:#fff}
+  .emb-copy code{font-family:'JetBrains Mono',monospace;font-size:12px;color:var(--ada2);background:var(--panel2);border:1px solid var(--stroke);border-radius:5px;padding:1px 5px}
+  .emb-list{list-style:none;margin:13px 0 0;display:flex;flex-direction:column;gap:8px}
+  .emb-list li{font-size:12.5px;color:var(--muted);line-height:1.5;padding-left:16px;position:relative}
+  .emb-list li::before{content:"›";position:absolute;left:0;color:var(--ada2);font-weight:800}
+  .emb-list b{color:var(--body);font-family:'JetBrains Mono',monospace;font-size:11.5px}
+  .attrs{display:flex;flex-wrap:wrap;gap:8px;margin-top:14px}
+  .attr{font-size:11.5px;color:var(--muted);background:var(--panel2);border:1px solid var(--stroke);border-radius:8px;padding:6px 10px}
+  .attr b{color:var(--ink);font-family:'JetBrains Mono',monospace;font-size:11px;margin-right:5px}
+  .metarow{display:flex;flex-direction:column;gap:10px;margin-top:13px}
+  .metacard{background:var(--panel2);border:1px solid var(--stroke);border-radius:11px;padding:12px;border-left:3px solid var(--eu)}
+  .metacard.sens{border-left-color:var(--wh)}
+  .metacard .mt{font-family:'JetBrains Mono',monospace;font-size:12px;font-weight:700;color:var(--eu);margin-bottom:5px}
+  .metacard.sens .mt{color:var(--wh)}
+  .metacard p{font-size:12px;color:var(--muted);line-height:1.5}
+  .metacard b{color:var(--body)}
+  .codeblk{background:#0a0b10;border:1px solid var(--stroke2);border-radius:12px;overflow:hidden}
+  .codeblk .cbar{background:var(--panel3);border-bottom:1px solid var(--stroke);padding:7px 12px;font-family:'JetBrains Mono',monospace;font-size:10px;color:var(--muted);letter-spacing:.04em}
+  .codeblk pre{padding:13px 14px;font-family:'JetBrains Mono',monospace;font-size:11.5px;line-height:1.65;color:#c7cbd6;white-space:pre;overflow-x:auto}
+  .codeblk pre .k{color:#c084fc} .codeblk pre .n{color:#9db4ff} .codeblk pre .s{color:#8ee9a6}
+  .codeblk pre .f{color:#f5c06b} .codeblk pre .m{color:#67e8f9} .codeblk pre .c{color:#5b6172}
+  .emb-mob{display:grid;grid-template-columns:1fr 262px;gap:26px;align-items:center}
+  @media(max-width:860px){.emb-mob{grid-template-columns:1fr}}
+  .emb-steps{margin:11px 0 0;padding-left:20px;display:flex;flex-direction:column;gap:8px}
+  .emb-steps li{font-size:13px;color:var(--body);line-height:1.5}
+  .emb-steps b{color:#fff}
+  .emb-note{font-size:12.5px;color:var(--muted);margin-top:13px;line-height:1.55}
+  .sdks{display:flex;flex-wrap:wrap;gap:8px;margin-top:15px}
+  .sdk{font-size:11.5px;font-weight:600;color:var(--body);background:var(--panel2);border:1px solid var(--stroke);border-radius:999px;padding:6px 12px}
+  .emb-phone-wrap{display:flex;justify-content:center}
 </style>
 </head>
 <body>
@@ -720,6 +762,150 @@
     </div>
   </div>
 
+  <!-- ================= DEPLOYMENT & EMBEDDING ================= -->
+  <div class="view" id="viewEmbed">
+    <button class="backlink" onclick="show('det')">← Back to Details</button>
+    <div class="emb-head">
+      <h2>Deploy Ada <span>anywhere</span></h2>
+      <p>One agent — the same knowledge, playbooks, actions and handoffs — embedded in your website with a single script, and native inside your mobile app. Here's how it goes live, how you pick a brand, and how you pass context securely.</p>
+    </div>
+
+    <!-- 1 · Embed script -->
+    <div class="emb-sec">
+      <div class="emb-h"><span class="n">1</span> The embed script</div>
+      <div class="emb-grid">
+        <div class="emb-copy">
+          <p>Drop one script tag on any page and the chat launcher appears — <b>no backend required</b>. <code>data-handle</code> is your bot; it's the only required attribute, and Ada hosts and versions the widget for you.</p>
+          <ul class="emb-list">
+            <li><b>data-handle</b> — which Ada bot (brand) to load</li>
+            <li><b>embed2.js</b> — Ada-hosted, auto-updating widget</li>
+            <li>Prefer code? Call <code>adaEmbed.start(…)</code> for full control over when and how it loads.</li>
+          </ul>
+        </div>
+        <div class="codeblk">
+          <div class="cbar">index.html</div>
+          <pre>&lt;<span class="k">script</span>
+  <span class="n">id</span>=<span class="s">"__ada"</span>
+  <span class="n">data-handle</span>=<span class="s">"your-brand"</span>
+  <span class="n">src</span>=<span class="s">"https://static.ada.support/embed2.js"</span>&gt;
+&lt;/<span class="k">script</span>&gt;</pre>
+        </div>
+      </div>
+    </div>
+
+    <!-- 2 · Brand attributes -->
+    <div class="emb-sec">
+      <div class="emb-h"><span class="n">2</span> Pick a brand</div>
+      <div class="emb-grid">
+        <div class="emb-copy">
+          <p>Each brand is its own Ada bot, chosen by its <b>handle</b>. One deployment can serve <b>many brands</b> — set the handle per site, or switch it at runtime. Region, language and styling are attributes too.</p>
+          <div class="attrs">
+            <span class="attr"><b>handle</b> brand / bot</span>
+            <span class="attr"><b>cluster</b> data region</span>
+            <span class="attr"><b>language</b> en · fr · de…</span>
+            <span class="attr"><b>styles</b> on-brand CSS</span>
+          </div>
+        </div>
+        <div class="codeblk">
+          <div class="cbar">switch-brand.js</div>
+          <pre><span class="c">// start a specific brand</span>
+<span class="f">adaEmbed</span>.<span class="m">start</span>({
+  <span class="n">handle</span>: <span class="s">"acme-uk"</span>,
+  <span class="n">cluster</span>: <span class="s">"eu"</span>,
+  <span class="n">language</span>: <span class="s">"en"</span>
+});
+
+<span class="c">// later, swap to another brand</span>
+<span class="k">await</span> <span class="f">adaEmbed</span>.<span class="m">reset</span>({ <span class="n">handle</span>: <span class="s">"acme-de"</span> });</pre>
+        </div>
+      </div>
+    </div>
+
+    <!-- 3 · Metadata -->
+    <div class="emb-sec">
+      <div class="emb-h"><span class="n">3</span> Pass context — metadata &amp; sensitive metadata</div>
+      <div class="emb-grid">
+        <div class="emb-copy">
+          <p>Tell Ada <b>who the customer is</b> so the agent is personalised from the very first turn. There are two kinds:</p>
+          <div class="metarow">
+            <div class="metacard">
+              <div class="mt">metaFields</div>
+              <p>Standard context — name, plan, IDs. Usable in <b>Actions, Knowledge rules &amp; playbooks</b>. Visible in the dashboard.</p>
+            </div>
+            <div class="metacard sens">
+              <div class="mt">sensitiveMetaFields</div>
+              <p>Encrypted in transit, <b>redacted</b> in the dashboard, and <b>never sent to the LLM</b>. For tokens, account numbers, PII.</p>
+            </div>
+          </div>
+        </div>
+        <div class="codeblk">
+          <div class="cbar">context.js</div>
+          <pre><span class="f">adaEmbed</span>.<span class="m">start</span>({
+  <span class="n">handle</span>: <span class="s">"acme-uk"</span>,
+  <span class="n">metaFields</span>: {
+    <span class="n">name</span>: <span class="s">"Alex Rivera"</span>,
+    <span class="n">plan</span>: <span class="s">"Premium"</span>,
+    <span class="n">last_order</span>: <span class="s">"#10432"</span>
+  },
+  <span class="n">sensitiveMetaFields</span>: {
+    <span class="n">auth_token</span>: <span class="s">"•••••"</span>,
+    <span class="n">account_id</span>: <span class="s">"•••••"</span>
+  }
+});
+
+<span class="c">// or update it after load</span>
+<span class="f">adaEmbed</span>.<span class="m">setMetaFields</span>({ <span class="n">cart_value</span>: <span class="s">"82.00"</span> });</pre>
+        </div>
+      </div>
+    </div>
+
+    <!-- 4 · Mobile -->
+    <div class="emb-sec">
+      <div class="emb-h"><span class="n">4</span> Also native in your mobile app</div>
+      <div class="emb-mob">
+        <div class="emb-copy">
+          <p>The same AI agent lives inside your app through Ada's <b>mobile SDKs</b>. In plain terms, it's three steps:</p>
+          <ol class="emb-steps">
+            <li>Add the Ada <b>SDK</b> to your app.</li>
+            <li>Initialise it with your <b>handle</b> — the same brand/bot as the web.</li>
+            <li>Open the chat from a button, passing the same <b>metaFields / sensitiveMetaFields</b> for a logged-in, personalised experience.</li>
+          </ol>
+          <p class="emb-note">Same knowledge, playbooks, actions and handoffs as the web — nothing to rebuild. Push notifications keep the conversation going even after the app is closed.</p>
+          <div class="sdks">
+            <span class="sdk">iOS · Swift</span>
+            <span class="sdk">Android · Kotlin</span>
+            <span class="sdk">React Native</span>
+            <span class="sdk">Flutter</span>
+          </div>
+        </div>
+        <div class="emb-phone-wrap">
+          <div class="do-phone" style="--ada:#7c5cff;width:230px;height:470px">
+            <div class="do-screen"><div class="do-notch"></div>
+              <div class="do-stat"><span>9:41</span><span>5G ▮▮ 86%</span></div>
+              <div class="do-bg" style="background:#0d0f16;padding:34px 13px 13px">
+                <div style="display:flex;justify-content:space-between;align-items:center"><div style="font-family:'JetBrains Mono',monospace;font-size:11px;color:#a48bff;font-weight:800;letter-spacing:.12em">ACME</div><div style="font-size:12px;color:#9aa0b0">☰</div></div>
+                <div style="margin-top:14px;height:72px;border-radius:12px;background:linear-gradient(120deg,#7c5cff,#3b2b8c)"></div>
+                <div style="margin-top:10px;display:flex;gap:9px"><div style="flex:1;height:48px;border-radius:10px;background:#161922;border:1px solid #262b38"></div><div style="flex:1;height:48px;border-radius:10px;background:#161922;border:1px solid #262b38"></div></div>
+                <div style="margin-top:10px;height:14px;width:60%;border-radius:5px;background:#1c2029"></div>
+                <div style="margin-top:8px;height:14px;width:80%;border-radius:5px;background:#161922"></div>
+              </div>
+              <div class="do-glass" style="position:absolute;left:11px;right:11px;bottom:70px;padding:11px">
+                <div class="do-lbl">In-app support</div>
+                <div style="display:flex;gap:9px"><div class="do-ava">✦</div><div class="do-a">Hi Alex 👋 I can see your <b>Premium</b> plan and last order <b>#10432</b> — how can I help?</div></div>
+                <div class="do-chips"><span class="do-chip solid">Track order</span><span class="do-chip">Billing</span></div>
+              </div>
+              <div style="position:absolute;right:16px;bottom:16px;width:48px;height:48px;border-radius:50%;background:linear-gradient(135deg,#7c5cff,#a48bff);display:flex;align-items:center;justify-content:center;color:#fff;font-weight:800;box-shadow:0 10px 24px rgba(124,92,255,.5);border:2px solid #0d0f16">✦</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="also" style="margin-top:8px">
+      <b>Behind every surface:</b> the embed SDK and mobile SDKs render and drive the chat on the client; your context arrives before the first message via <span class="mono">metaFields</span> / <span class="mono">sensitiveMetaFields</span>; and the same agent — one build — answers on web and mobile alike.
+    </div>
+  </div>
+
   <footer>Ada API Explorer · illustrative reference &amp; walkthrough · method inventory from docs.ada.cx · handoff coverage from AI Agent Integration Readiness (Sep 2026)</footer>
 </div>
 
@@ -730,7 +916,7 @@ function esc(s){return (s||'').replace(/&/g,'&amp;').replace(/</g,'&lt;').replac
 var DATA=[
   {cls:'sdk',ic:'💬',nm:'Front-end Chat SDK',kind:'embed2.js · client-side',
    lead:"Embed Ada's chat on any web page or app and control it entirely from the browser — no backend required.",
-   link:{label:'Explore 8 front-end Design Options →',view:'des'},
+   links:[{label:'Explore 8 front-end Design Options →',view:'des'},{label:'Deployment &amp; embedding →',view:'embed'}],
    groups:[
      {gl:'Lifecycle',items:[['start()','Initialise Embed2 on your page.'],['stop()','Remove the chat widget.'],['toggle()','Open or close the chat drawer.'],['reset()','Start a fresh chatter session.'],['isOpen()','Is the drawer currently open?'],['getInfo()','Bot + drawer state metadata.']]},
      {gl:'Context',items:[['setMetaFields()','Attach chatter context (name, plan, IDs) the agent can use.'],['setSensitiveMetaFields()','Encrypted, temporary context — kept out of the LLM.'],['getMetaFields()','Read the currently-set context.'],['setLanguage()','Switch chat language programmatically.']]},
@@ -826,7 +1012,7 @@ DATA.forEach(function(api,ai){
       gr.items.map(function(it){return '<span class="pill" data-d="'+esc(it[1])+'" data-n="'+esc(it[0])+'">'+esc(it[0])+'</span>';}).join('')+
       '</div></div>';
   }).join('');
-  var linkHtml = api.link ? '<button class="dolink" data-view="'+api.link.view+'">'+api.link.label+'</button>' : '';
+  var linkHtml = (api.links||[]).map(function(ln){return '<button class="dolink" data-view="'+ln.view+'">'+ln.label+'</button>';}).join('');
   c.innerHTML='<div class="card-h"><div class="card-ic">'+api.ic+'</div><div><div class="nm">'+api.nm+'</div><div class="kind">'+api.kind+'</div></div></div>'+
     '<div class="lead">'+api.lead+'</div>'+g+
     '<div class="detail empty" id="det'+ai+'">Tap any method to see what it does.</div>'+linkHtml;
@@ -838,7 +1024,7 @@ DATA.forEach(function(api,ai){
       det.innerHTML='<span class="dn">'+p.dataset.n+'</span> — '+p.dataset.d;
     });
   });
-  var lk=c.querySelector('.dolink'); if(lk){lk.addEventListener('click',function(){show(this.dataset.view);});}
+  c.querySelectorAll('.dolink').forEach(function(lk){lk.addEventListener('click',function(){show(this.dataset.view);});});
 });
 
 /* ---------- handoff matrix ---------- */
@@ -891,7 +1077,7 @@ document.getElementById('voiceWall').innerHTML=VOICE_HOFF.map(function(o){return
 
 /* ---------- view toggle ---------- */
 function show(v){
-  ['ovr','det','exm','des'].forEach(function(x){
+  ['ovr','det','exm','des','embed'].forEach(function(x){
     var el=document.getElementById('view'+x.charAt(0).toUpperCase()+x.slice(1));
     if(el)el.classList.toggle('on',v===x);
   });
