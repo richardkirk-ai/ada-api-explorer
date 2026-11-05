@@ -793,30 +793,37 @@
       </div>
     </div>
 
-    <!-- 2 · Brand attributes -->
+    <!-- 2 · Brand per site -->
     <div class="emb-sec">
-      <div class="emb-h"><span class="n">2</span> Pick a brand</div>
+      <div class="emb-h"><span class="n">2</span> Brand it per site — one agent, many brands</div>
       <div class="emb-grid">
         <div class="emb-copy">
-          <p>Each brand is its own Ada bot, chosen by its <b>handle</b>. One deployment can serve <b>many brands</b> — set the handle per site, or switch it at runtime. Region, language and styling are attributes too.</p>
+          <p><b>One AI agent can serve several brands.</b> Pass a <code>branding</code> object to <code>start()</code> and each page gets its own name, colours, avatar and launcher. Leave any field out and it keeps the dashboard look.</p>
           <div class="attrs">
-            <span class="attr"><b>handle</b> brand / bot</span>
-            <span class="attr"><b>cluster</b> data region</span>
-            <span class="attr"><b>language</b> en · fr · de…</span>
-            <span class="attr"><b>styles</b> on-brand CSS</span>
+            <span class="attr"><b>aiAgentName</b> / description</span>
+            <span class="attr"><b>avatarUrl</b></span>
+            <span class="attr"><b>headerColor</b> · headerTextColor</span>
+            <span class="attr"><b>tintColor</b></span>
+            <span class="attr"><b>cornerStyle</b> · textSize</span>
+            <span class="attr"><b>launcher</b> { color, icon, size, text }</span>
           </div>
+          <p class="emb-note">Messaging Web SDK. Omitted fields fall back to the dashboard; the old <code>styles</code> setting is deprecated.</p>
         </div>
         <div class="codeblk">
-          <div class="cbar">switch-brand.js</div>
-          <pre><span class="c">// start a specific brand</span>
-<span class="f">adaEmbed</span>.<span class="m">start</span>({
-  <span class="n">handle</span>: <span class="s">"acme-uk"</span>,
-  <span class="n">cluster</span>: <span class="s">"eu"</span>,
-  <span class="n">language</span>: <span class="s">"en"</span>
-});
-
-<span class="c">// later, swap to another brand</span>
-<span class="k">await</span> <span class="f">adaEmbed</span>.<span class="m">reset</span>({ <span class="n">handle</span>: <span class="s">"acme-de"</span> });</pre>
+          <div class="cbar">brand.js</div>
+          <pre><span class="f">adaEmbed</span>.<span class="m">start</span>({
+  <span class="n">handle</span>: <span class="s">"rkirk-gaming-demo"</span>,   <span class="c">// same agent</span>
+  <span class="n">branding</span>: {
+    <span class="n">aiAgentName</span>: { <span class="n">en</span>: <span class="s">"Ada Bet"</span> },
+    <span class="n">aiAgentDescription</span>: { <span class="n">en</span>: <span class="s">"Your 24/7 betting assistant"</span> },
+    <span class="n">avatarUrl</span>: <span class="s">"https://…/ada-bet.png"</span>,
+    <span class="n">headerColor</span>: <span class="s">"#9FDCD6"</span>,
+    <span class="n">headerTextColor</span>: <span class="s">"#0B1A1C"</span>,
+    <span class="n">tintColor</span>: <span class="s">"#3F9FA3"</span>,
+    <span class="n">cornerStyle</span>: <span class="s">"round"</span>,
+    <span class="n">launcher</span>: { <span class="n">backgroundColor</span>: <span class="s">"#2C7378"</span>, <span class="n">size</span>: <span class="n">56</span> }
+  }
+});</pre>
         </div>
       </div>
     </div>
