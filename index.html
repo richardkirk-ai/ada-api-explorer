@@ -938,7 +938,7 @@ var DATA=[
      {gl:'Channels',items:[['GET /channels','List your custom channels.'],['POST /channels','Create a custom channel.']]},
      {gl:'Conversations',items:[['POST /conversations','Start a conversation.'],['GET /conversations/{id}','Fetch a conversation.'],['PATCH /conversations/{id}','Update conversation metadata.'],['POST …/end','Close the conversation.'],['POST …/end-handoff','Conclude an agent handoff.']]},
      {gl:'Messages & attachments',items:[['POST …/messages','Send a message into the conversation.'],['GET …/messages','List messages.'],['POST …/attachments','Upload an attachment (≤10MB).']]},
-     {gl:'Email channel',items:[['POST /conversations/email','Start a conversation on Ada\'s native Email channel.']]},
+     {gl:'Email channel',items:[['POST /conversations/email','Create an email conversation from your own system — a web contact form, a ticketing trigger or a webform submission. Ada\'s email agent reads it and replies.'],['identity','Email has no embed script, so no metaFields / OAuth — the sender\'s email address is the identity key your Actions look up.']]},
      {gl:'How replies come back',items:[['webhook','AI/agent replies are delivered to your endpoint as v1.conversation.message events — you render them in your UI.']]}
    ]},
   {cls:'eu',ic:'👤',nm:'End Users API',kind:'/v2/end-users · context',
