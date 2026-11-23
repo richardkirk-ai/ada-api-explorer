@@ -933,12 +933,13 @@ var DATA=[
      {gl:'Events you can subscribe to',items:[['ada:ready','Chat initialised & ready.'],['ada:conversation:message','A new message arrived.'],['ada:agent:joined','A live agent joined (handoff).'],['ada:typing:start','Agent started typing.'],['ada:csat_submitted','User submitted a CSAT rating.'],['ada:end_conversation','User ended the chat.'],['ada:connection:change','Websocket status changed.']]}
    ]},
   {cls:'conv',ic:'🔌',nm:'Conversations API',kind:'/v2 · server-side',
-   lead:"Build your own channel or custom UI. Drive conversations from your server; AI &amp; agent replies arrive by webhook.",
+   lead:"Build your own channel or custom UI. Drive conversations from your server; AI &amp; agent replies arrive by webhook — or place outbound proactive voice calls that run a Playbook the moment the person answers.",
    groups:[
      {gl:'Channels',items:[['GET /channels','List your custom channels.'],['POST /channels','Create a custom channel.']]},
      {gl:'Conversations',items:[['POST /conversations','Start a conversation.'],['GET /conversations/{id}','Fetch a conversation.'],['PATCH /conversations/{id}','Update conversation metadata.'],['POST …/end','Close the conversation.'],['POST …/end-handoff','Conclude an agent handoff.']]},
      {gl:'Messages & attachments',items:[['POST …/messages','Send a message into the conversation.'],['GET …/messages','List messages.'],['POST …/attachments','Upload an attachment (≤10MB).']]},
      {gl:'Email channel',items:[['POST /conversations/email','Create an email conversation from your own system — a web contact form, a ticketing trigger or a webform submission. Ada\'s email agent reads it and replies.'],['identity','Email has no embed script, so no metaFields / OAuth — the sender\'s email address is the identity key your Actions look up.']]},
+     {gl:'Proactive outreach · outbound voice',items:[['POST /v2/conversations/proactive','Place an OUTBOUND call from your system. Ada dials the recipient over your configured SIP trunk and runs the bound Playbook the moment they answer. Body: proactive_id, channel:"voice", recipient.phone_number (E.164), language, and any metadata. Send an Idempotency-Key so a retry never double-dials.'],['SIP INVITE · dialer-led','Prefer your own contact-centre dialer? It places the call, detects a human answer, then hands the live call to Ada with a SIP INVITE carrying X-Ada-Proactive-Id, X-Ada-Language and X-Ada-Metadata-* headers. Same Playbook runs — your dialer owns pacing and answer-detection.'],['proactive_id → Playbook','The proactive_id names a Proactive Outreach you configure in the dashboard (Outreach). It is bound to one Playbook, which becomes the conversation the instant the person answers — scripted, branching and tool-enabled, not a one-shot message. metadata (e.g. case_id) personalises it from the first turn.'],['Compliance attestation','An outreach cannot be activated until you attest your use complies with law and your Ada agreement — consent, permitted calling hours, DNC / suppression lists and call-recording disclosure. A one-time gate per outreach, in the dashboard; the API will not dial for an unattested outreach.']]},
      {gl:'How replies come back',items:[['webhook','AI/agent replies are delivered to your endpoint as v1.conversation.message events — you render them in your UI.']]}
    ]},
   {cls:'eu',ic:'👤',nm:'End Users API',kind:'/v2/end-users · context',
@@ -986,7 +987,7 @@ var DATA=[
 /* families that appear as tiles on Overview (handoff has no method card — it has the matrix) */
 var TILES=[
   {cls:'sdk',ic:'💬',nm:'Front-end Chat SDK',kd:'embed2.js',go:'fam-sdk',p:'Embed &amp; control chat in the browser — build any custom front-end.',acc:'var(--sdk)'},
-  {cls:'conv',ic:'🔌',nm:'Conversations API',kd:'/v2 · server-side',go:'fam-conv',p:'Drive conversations from your server; own the UI, replies by webhook.',acc:'var(--conv)'},
+  {cls:'conv',ic:'🔌',nm:'Conversations API',kd:'/v2 · server-side',go:'fam-conv',p:'Drive conversations from your server; own the UI, replies by webhook. Also places outbound proactive voice calls.',acc:'var(--conv)'},
   {cls:'eu',ic:'👤',nm:'End Users API',kd:'context',go:'fam-eu',p:'Tell Ada who the customer is before they type.',acc:'var(--eu)'},
   {cls:'wh',ic:'📡',nm:'Webhooks & Events',kd:'Svix',go:'fam-wh',p:'Receive replies and stay in sync, in real time.',acc:'var(--wh)'},
   {cls:'snap',ic:'🗄️',nm:'Snapshots API',kd:'export / import',go:'fam-snap',p:'Back up, restore &amp; clone an agent\'s entire configuration.',acc:'#f0abfc'},
